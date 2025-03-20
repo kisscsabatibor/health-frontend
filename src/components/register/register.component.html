@@ -1,0 +1,38 @@
+<mat-card>
+    <h2>Registration</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <mat-radio-group formControlName="role" aria-label="Select an option">
+        <mat-label>I am a...</mat-label>
+        <mat-radio-button value="patient">Patient</mat-radio-button>
+        <mat-radio-button value="doctor">Doctor</mat-radio-button>
+      </mat-radio-group> 
+    <mat-form-field appearance="fill">
+        <mat-label>E-mail</mat-label>
+        <input matInput formControlName="email" type="email" placeholder="example@example.org">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Full name</mat-label>
+        <input matInput formControlName="name" type="text" placeholder="e.g. John Smith">
+      </mat-form-field>
+      <mat-form-field  appearance="fill">
+        <mat-label>Password</mat-label>
+        <input formControlName="password" matInput type="password">
+      </mat-form-field>
+      <mat-form-field  appearance="fill">
+        <mat-label>Password again</mat-label>
+        <input formControlName="passwordAgain" matInput type="password">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Date of birth</mat-label>
+        <input formControlName="birthDay" matInput [matDatepicker]="picker">
+        <mat-datepicker-toggle matIconSuffix [for]="picker">
+          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+           
+      <mat-checkbox formControlName="accept">I have read and accept the Terms and Conditions</mat-checkbox>
+      
+      <button [disabled]="!registerForm.valid" type="submit" mat-flat-button>Register</button>
+      </form>
+</mat-card>

@@ -1,0 +1,41 @@
+.landing-container {
+    color: #333;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .hero {
+    background: linear-gradient(135deg, #ff4081, #f50057);
+    color: white;
+    padding: 4rem 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+  
+  .cta-buttons button {
+    margin: 1rem;
+  }
+  
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .feature-item, mat-card {
+    padding: 1.5rem;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .how-it-works ol {
+    text-align: left;
+    display: inline-block;
+    padding: 1rem;
+  }
+  
+  .cta {
+    margin-top: 2rem;
+  }

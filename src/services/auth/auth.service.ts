@@ -14,7 +14,9 @@ export class AuthService {
   private http = inject(HttpClient)
 
   public registerUser(registrationPayload: RegistrationPayload) {
-    return this.http.post('http://localhost:3000/register', registrationPayload)
+    return this.http
+      .post('http://localhost:3000/register', registrationPayload)
+      .pipe(catchError((err) => of(err)))
   }
 
   public loginUser(loginPayload: LoginPayload) {

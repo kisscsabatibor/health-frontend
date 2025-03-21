@@ -8,11 +8,17 @@
       </mat-radio-group> 
     <mat-form-field appearance="fill">
         <mat-label>E-mail</mat-label>
-        <input matInput formControlName="email" type="email" placeholder="example@example.org">
+        <input (blur)="updateEmailErrorMessage()" matInput formControlName="email" type="email" placeholder="example@example.org">
+        @if (!registerForm.controls['email'].valid) {
+          <mat-error><mat-icon>error</mat-icon>{{emailErrorMessage()}}</mat-error>
+        }
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Full name</mat-label>
-        <input matInput formControlName="name" type="text" placeholder="e.g. John Smith">
+        <input (blur)="updateNameErrorMessage()" matInput formControlName="name" type="text" placeholder="e.g. John Smith">
+        @if (!registerForm.controls['name'].valid) {
+          <mat-error><mat-icon>error</mat-icon>{{nameErrorMessage()}}</mat-error>
+        }
       </mat-form-field>
       <mat-form-field  appearance="fill">
         <mat-label>Password</mat-label>
@@ -24,15 +30,23 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Date of birth</mat-label>
-        <input formControlName="birthDay" matInput [matDatepicker]="picker">
+        <input (dateChange)="updateBirthDayErrorMessage()" formControlName="birthDay" matInput [matDatepicker]="picker">
         <mat-datepicker-toggle matIconSuffix [for]="picker">
           <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
         </mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <mat-datepicker #picker ></mat-datepicker>
       </mat-form-field>
+      @if (registerForm.controls['birthDay'].dirty && !registerForm.controls['birthDay'].valid) {
+        <mat-error><mat-icon>error</mat-icon>{{birthDayErrorMessage()}}</mat-error>
+      }
            
-      <mat-checkbox formControlName="accept">I have read and accept the Terms and Conditions</mat-checkbox>
-      
+      <mat-checkbox formControlName="accept">I have read and accept the Terms and Conditions*</mat-checkbox>
+      @if (registerForm.controls['accept'].dirty && !registerForm.controls['accept'].value) {
+        <mat-error><mat-icon>error</mat-icon>You have to accept the Terms and Conditions to continue.</mat-error>
+      }
+      @if (formError()) {
+        <mat-error><mat-icon>error</mat-icon>{{formError()}}</mat-error>
+      }
       <button [disabled]="!registerForm.valid" type="submit" mat-flat-button>Register</button>
       </form>
 </mat-card>

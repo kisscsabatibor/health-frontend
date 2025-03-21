@@ -12,4 +12,10 @@
   mat-card-title{
     margin-bottom: 10px;
   }
+
+  mat-card-actions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
   

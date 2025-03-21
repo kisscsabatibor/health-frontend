@@ -1,5 +1,7 @@
 import { User } from '../user/user'
 
+export const BACKEND_URL = 'http://localhost:3000'
+
 export interface RegistrationPayload extends User {
   password: string
 }

@@ -12,6 +12,10 @@ import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatSelectModule } from '@angular/material/select'
 import { MatInput } from '@angular/material/input'
 import { MatButton } from '@angular/material/button'
+import { MatDialog } from '@angular/material/dialog'
+import { DeleteProfileConfirmationDialogComponent } from '../../dialogs/delete-profile-confirmation-dialog/delete-profile-confirmation-dialog.component'
+import { filter, switchMap } from 'rxjs'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-profile',
@@ -28,6 +32,9 @@ import { MatButton } from '@angular/material/button'
 })
 export class ProfileComponent {
   private userService = inject(UserService)
+  private router = inject(Router)
+  readonly dialog = inject(MatDialog)
+
   profileForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -50,4 +57,22 @@ export class ProfileComponent {
   }
 
   saveChanges() {}
+
+  deleteAccount() {
+    const dialogRef = this.dialog.open(
+      DeleteProfileConfirmationDialogComponent,
+      {
+        data: {},
+      },
+    )
+
+    dialogRef
+      .afterClosed()
+      .pipe(filter((res) => res))
+      .pipe(switchMap(() => this.userService.deleteAccount()))
+      .subscribe(() => {
+        this.userService.logOut()
+        this.router.navigateByUrl('')
+      })
+  }
 }

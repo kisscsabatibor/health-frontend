@@ -41,6 +41,7 @@ export class LoginComponent {
       .loginUser(this.loginForm.value as LoginPayload)
       .subscribe((response) => {
         if (response.token) {
+          this.userService.isLoggedIn = true
           this.router.navigateByUrl('profile')
         }
         if (response.status === 401) {

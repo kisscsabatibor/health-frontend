@@ -15,6 +15,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms'
+import { AuthService } from '../../services/auth/auth.service'
+import { UserService } from '../../services/user/user.service'
 
 @Component({
   selector: 'app-register',
@@ -36,6 +38,7 @@ import {
 export class RegisterComponent implements OnInit {
   private activatedRoute = inject(ActivatedRoute)
   private formBuilder = inject(FormBuilder)
+  private userService = inject(UserService)
 
   registerForm = this.formBuilder.group(
     {
@@ -60,7 +63,13 @@ export class RegisterComponent implements OnInit {
     })
   }
 
-  onSubmit() {}
+  onSubmit() {
+    this.userService
+      .registerUser(this.registerForm.value)
+      .subscribe((value) => {
+        console.log(value)
+      })
+  }
 
   passwordMatchValidator(form: FormGroup) {
     const password = form.get('password')?.value

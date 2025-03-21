@@ -4,10 +4,15 @@
     <mat-icon>menu</mat-icon>
   </button>
   <mat-menu #menu="matMenu" >
-    <button mat-menu-item routerLink="login">Login</button>
-    <button mat-menu-item routerLink="register">Registration</button>
-    <button mat-menu-item routerLink="profile">Profile</button>
-    <button mat-menu-item>Log out</button>
+    @if(userService.isLoggedIn){
+      <button mat-menu-item routerLink="profile">Profile</button>
+      <button mat-menu-item (click)="logOut()">Log out</button>
+    } @else{
+      <button mat-menu-item routerLink="login">Login</button>
+      <button mat-menu-item routerLink="register">Registration</button>
+    }
+
+
   </mat-menu>
 </mat-toolbar>
 <router-outlet></router-outlet>

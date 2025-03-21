@@ -1,13 +1,39 @@
 import { Routes } from '@angular/router'
-import { LandingComponent } from '../components/landing/landing.component'
-import { RegisterComponent } from '../components/register/register.component'
-import { LoginComponent } from '../components/login/login.component'
-import { ProfileComponent } from '../components/profile/profile.component'
 
 export const routes: Routes = [
-  { path: '', component: LandingComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: '**', component: LandingComponent },
+  {
+    path: '',
+    loadComponent: () =>
+      import('./../components/landing/landing.component').then(
+        (c) => c.LandingComponent,
+      ),
+  },
+  {
+    path: 'register',
+    loadComponent: () =>
+      import('./../components/register/register.component').then(
+        (c) => c.RegisterComponent,
+      ),
+  },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./../components/login/login.component').then(
+        (c) => c.LoginComponent,
+      ),
+  },
+  {
+    path: 'profile',
+    loadComponent: () =>
+      import('./../components/profile/profile.component').then(
+        (c) => c.ProfileComponent,
+      ),
+  },
+  {
+    path: '**',
+    loadComponent: () =>
+      import('./../components/landing/landing.component').then(
+        (c) => c.LandingComponent,
+      ),
+  },
 ]

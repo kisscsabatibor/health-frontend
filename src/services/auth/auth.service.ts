@@ -15,13 +15,16 @@ export class AuthService {
 
   public registerUser(registrationPayload: RegistrationPayload) {
     return this.http
-      .post('http://localhost:3000/register', registrationPayload)
+      .post('http://localhost:3000/api/auth/register', registrationPayload)
       .pipe(catchError((err) => of(err)))
   }
 
   public loginUser(loginPayload: LoginPayload) {
     return this.http
-      .post<LoginResponsePayload>('http://localhost:3000/login', loginPayload)
+      .post<LoginResponsePayload>(
+        'http://localhost:3000/api/auth/login',
+        loginPayload,
+      )
       .pipe(
         tap((token) => localStorage.setItem('token', token.token as string)),
         catchError((err) => of(err)),
@@ -29,7 +32,7 @@ export class AuthService {
   }
 
   public getProfile() {
-    return this.http.get('http://localhost:3000/profile')
+    return this.http.get('http://localhost:3000/api/user/profile')
   }
 
   public getAuthToken() {

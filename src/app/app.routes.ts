@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router'
+import { profileGuard } from '../guards/profile.guard'
 
 export const routes: Routes = [
   {
@@ -28,6 +29,7 @@ export const routes: Routes = [
       import('./../components/profile/profile.component').then(
         (c) => c.ProfileComponent,
       ),
+    canActivate: [profileGuard],
   },
   {
     path: '**',

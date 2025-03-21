@@ -6,8 +6,12 @@
 }
 mat-card{
     padding: 20px;
+    min-width: 30%;
 }
 form{
     display: flex;
     flex-direction: column;
+}
+mat-error{
+    margin-bottom: 5px;
 }

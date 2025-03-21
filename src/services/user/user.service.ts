@@ -1,5 +1,4 @@
 import { inject, Injectable } from '@angular/core'
-import { User } from './user'
 import { AuthService } from '../auth/auth.service'
 import { LoginPayload, RegistrationPayload } from '../auth/auth.payload'
 import { tap } from 'rxjs'

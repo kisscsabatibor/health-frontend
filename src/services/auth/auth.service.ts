@@ -1,7 +1,11 @@
 import { inject, Injectable } from '@angular/core'
-import { LoginPayload, RegistrationPayload } from './auth.payload'
+import {
+  LoginPayload,
+  LoginResponsePayload,
+  RegistrationPayload,
+} from './auth.payload'
 import { HttpClient } from '@angular/common/http'
-import { tap } from 'rxjs'
+import { catchError, of, tap } from 'rxjs'
 
 @Injectable({
   providedIn: 'root',
@@ -15,11 +19,10 @@ export class AuthService {
 
   public loginUser(loginPayload: LoginPayload) {
     return this.http
-      .post('http://localhost:3000/login', loginPayload)
+      .post<LoginResponsePayload>('http://localhost:3000/login', loginPayload)
       .pipe(
-        tap((token: any) =>
-          localStorage.setItem('token', token.token as string),
-        ),
+        tap((token) => localStorage.setItem('token', token.token as string)),
+        catchError((err) => of(err)),
       )
   }
 

@@ -3,12 +3,21 @@
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="fill">
         <mat-label>E-mail</mat-label>
-        <input formControlName="email" matInput type="email" placeholder="example@example.org">
+        <input formControlName="email" matInput type="email" placeholder="example@example.org" (blur)="updateEmailErrorMessage()">
+        @if (!loginForm.controls['email'].valid) {
+          <mat-error><mat-icon>error</mat-icon>{{emailErrorMessage()}}</mat-error>
+        }
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Password</mat-label>
-        <input formControlName="password" matInput type="password">
+        <input formControlName="password" matInput type="password" (blur)="updatePasswordErrorMessage()">
+        @if (!loginForm.controls['password'].valid) {
+          <mat-error><mat-icon>error</mat-icon>{{passwordErrorMessage()}}</mat-error>
+        }
       </mat-form-field>
+      @if (formError()) {
+        <mat-error><mat-icon>error</mat-icon>{{formError()}}</mat-error>
+      }
       <button type="submit" [disabled]="!loginForm.valid" mat-flat-button>Login</button>
     </form>
     </mat-card>

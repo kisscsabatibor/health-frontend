@@ -60,7 +60,13 @@ export class ProfileComponent {
     })
   }
 
-  saveChanges() {}
+  saveChanges() {
+    this.userService
+      .updateProfile(this.profileForm.value)
+      .subscribe((updatedProfile) => {
+        console.log(updatedProfile)
+      })
+  }
 
   deleteAccount() {
     const dialogRef = this.dialog.open(

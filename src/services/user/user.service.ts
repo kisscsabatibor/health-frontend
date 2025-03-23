@@ -27,6 +27,13 @@ export class UserService {
     return this.authService.getProfile()
   }
 
+  public updateProfile(updateProfilePayload: any) {
+    return this.http.put(
+      BACKEND_URL + '/api/user/profile',
+      updateProfilePayload,
+    )
+  }
+
   public deleteAccount() {
     return this.http.delete(BACKEND_URL + '/api/user/profile')
   }

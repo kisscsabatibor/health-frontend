@@ -40,15 +40,19 @@ export class ProfileComponent {
     email: new FormControl('', [Validators.required, Validators.email]),
     birthDay: new FormControl(''),
     role: new FormControl(''),
+    city: new FormControl(''),
+    phoneNumber: new FormControl(''),
   })
 
   constructor() {
-    this.userService.getProfile().subscribe((value: any) => {
+    this.userService.getProfile().subscribe((profile: any) => {
       const userData = {
-        email: value.email,
-        name: value.name,
-        birthDay: value.birthDay,
-        role: value.role,
+        email: profile.email,
+        name: profile.name,
+        birthDay: profile.birthDay,
+        role: profile.role,
+        city: profile.city,
+        phoneNumber: profile.phoneNumber,
       }
       this.profileForm.setValue(userData)
       this.profileForm.controls['birthDay'].disable()

@@ -1,7 +1,17 @@
 <mat-card class="report-list-card">
     <mat-card-title>Health Reports</mat-card-title>
     <mat-card-content>
+    <div class="table-container">
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="createdAt">
+            <th mat-header-cell *matHeaderCellDef> Created at </th>
+            <td mat-cell *matCellDef="let report">
+              @if(report.createdAt){
+                  <span> {{ report.createdAt| date }}</span>
+              } 
+            </td>
+          </ng-container>
 
         <ng-container matColumnDef="pulse">
           <th mat-header-cell *matHeaderCellDef> Pulse </th>
@@ -51,6 +61,7 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
+    </div>
     </mat-card-content>
   </mat-card>
   

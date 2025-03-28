@@ -5,7 +5,6 @@ import {
   LoginPayload,
   RegistrationPayload,
 } from '../auth/auth.payload'
-import { tap } from 'rxjs'
 import { HttpClient } from '@angular/common/http'
 
 @Injectable({

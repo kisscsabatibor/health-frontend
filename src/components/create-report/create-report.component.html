@@ -1,0 +1,42 @@
+<div class="report-container">
+    <mat-card class="report-card">
+      <mat-card-title>Create Health Report</mat-card-title>
+      <mat-card-content>
+        <form [formGroup]="reportForm" (ngSubmit)="submitReport()">
+          <mat-form-field appearance="fill">
+            <mat-label>Pulse Rate</mat-label>
+            <input matInput type="number" formControlName="pulse" placeholder="Enter Pulse Rate" />
+            @if(reportForm.controls['pulse'].invalid){
+                <mat-error>Invalid Pulse Rate</mat-error>
+            }
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill">
+            <mat-label>Blood Pressure</mat-label>
+            <input matInput type="text" formControlName="bloodPressure" placeholder="e.g., 120/80" />
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill">
+            <mat-label>Weight (kg)</mat-label>
+            <input matInput type="number" formControlName="weight" placeholder="Enter Weight (kg)" />
+            @if(reportForm.controls['weight'].invalid){
+                <mat-error>Invalid Weight</mat-error>
+            }
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill">
+            <mat-label>Blood Sugar Level</mat-label>
+            <input matInput type="number" formControlName="bloodSugar" placeholder="Blood Sugar (mmol/L)" />
+            @if(reportForm.controls['bloodSugar'].invalid){
+                <mat-error>Invalid Blood Sugar Level</mat-error>
+            }
+          </mat-form-field>
+  
+          <button mat-raised-button color="primary" type="submit" [disabled]="reportForm.invalid || !isAtLeastOneFieldFilled()">
+            Submit Report
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

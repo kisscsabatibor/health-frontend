@@ -1,0 +1,56 @@
+<mat-card class="report-list-card">
+    <mat-card-title>Health Reports</mat-card-title>
+    <mat-card-content>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="pulse">
+          <th mat-header-cell *matHeaderCellDef> Pulse </th>
+          <td mat-cell *matCellDef="let report">
+            @if(report.pulse){
+                <span> {{ report.pulse }} BPM</span>
+            } 
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="weight">
+          <th mat-header-cell *matHeaderCellDef> Weight </th>
+          <td mat-cell *matCellDef="let report">
+            @if(report.weight){
+                <span> {{ report.weight }} kg</span>
+            } 
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="bloodSugar">
+          <th mat-header-cell *matHeaderCellDef> Blood Sugar </th>
+          <td mat-cell *matCellDef="let report">
+            @if(report.bloodSugar){
+                <span> {{ report.bloodSugar }} mmol/L</span>
+            } 
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="bloodPressure">
+          <th mat-header-cell *matHeaderCellDef> Blood Pressure </th>
+          <td mat-cell *matCellDef="let report">
+            @if(report.bloodPressure){
+                <span> {{ report.bloodPressure }}</span>
+            } 
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let report">
+              <button mat-icon-button color="warn" (click)="deleteReport(report._id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+  

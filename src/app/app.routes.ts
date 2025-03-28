@@ -35,6 +35,22 @@ export const routes: Routes = [
     canActivate: [profileGuard],
   },
   {
+    path: 'create-report',
+    loadComponent: () =>
+      import('./../components/create-report/create-report.component').then(
+        (c) => c.CreateReportComponent,
+      ),
+    canActivate: [profileGuard],
+  },
+  {
+    path: 'reports',
+    loadComponent: () =>
+      import('./../components/reports/reports.component').then(
+        (c) => c.ReportsComponent,
+      ),
+    canActivate: [profileGuard],
+  },
+  {
     path: '**',
     loadComponent: () =>
       import('./../components/landing/landing.component').then(

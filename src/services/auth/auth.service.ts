@@ -7,6 +7,7 @@ import {
 } from './auth.payload'
 import { HttpClient } from '@angular/common/http'
 import { catchError, of, tap } from 'rxjs'
+import { User } from '../user/user'
 
 @Injectable({
   providedIn: 'root',
@@ -30,7 +31,7 @@ export class AuthService {
   }
 
   public getProfile() {
-    return this.http.get(BACKEND_URL + '/api/user/profile')
+    return this.http.get<User>(BACKEND_URL + '/api/user/profile')
   }
 
   public getAuthToken() {

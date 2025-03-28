@@ -3,4 +3,6 @@ export interface User {
   name: string
   birthDay: string
   role: 'patient' | 'doctor'
+  city: string | null
+  phoneNumber: string | null
 }

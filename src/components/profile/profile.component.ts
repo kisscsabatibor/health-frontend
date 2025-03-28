@@ -6,7 +6,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms'
-import { User } from '../../services/user/user'
 import { MatCardModule } from '@angular/material/card'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatSelectModule } from '@angular/material/select'
@@ -16,6 +15,7 @@ import { MatDialog } from '@angular/material/dialog'
 import { DeleteProfileConfirmationDialogComponent } from '../../dialogs/delete-profile-confirmation-dialog/delete-profile-confirmation-dialog.component'
 import { filter, switchMap } from 'rxjs'
 import { Router } from '@angular/router'
+import { User } from '../../services/user/user'
 
 @Component({
   selector: 'app-profile',
@@ -45,8 +45,8 @@ export class ProfileComponent {
   })
 
   constructor() {
-    this.userService.getProfile().subscribe((profile: any) => {
-      const userData = {
+    this.userService.getProfile().subscribe((profile: User) => {
+      const userData: User = {
         email: profile.email,
         name: profile.name,
         birthDay: profile.birthDay,
@@ -62,7 +62,7 @@ export class ProfileComponent {
 
   saveChanges() {
     this.userService
-      .updateProfile(this.profileForm.value)
+      .updateProfile(this.profileForm.value as User)
       .subscribe((updatedProfile) => {
         console.log(updatedProfile)
       })

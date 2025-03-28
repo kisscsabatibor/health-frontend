@@ -6,6 +6,7 @@ import {
   RegistrationPayload,
 } from '../auth/auth.payload'
 import { HttpClient } from '@angular/common/http'
+import { User } from './user'
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +27,7 @@ export class UserService {
     return this.authService.getProfile()
   }
 
-  public updateProfile(updateProfilePayload: any) {
+  public updateProfile(updateProfilePayload: User) {
     return this.http.put(
       BACKEND_URL + '/api/user/profile',
       updateProfilePayload,

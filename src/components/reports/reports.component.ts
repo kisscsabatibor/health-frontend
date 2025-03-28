@@ -4,15 +4,24 @@ import { ReportPayload } from '../../services/report/report.payload'
 import { MatTableDataSource, MatTableModule } from '@angular/material/table'
 import { MatCardModule } from '@angular/material/card'
 import { MatIcon } from '@angular/material/icon'
-import { MatIconButton } from '@angular/material/button'
+import { MatButton, MatIconButton } from '@angular/material/button'
 import { filter, switchMap } from 'rxjs'
 import { MatDialog } from '@angular/material/dialog'
 import { DeleteReportConfirmationDialogComponent } from '../../dialogs/delete-report-confirmation-dialog/delete-report-confirmation-dialog.component'
 import { DatePipe } from '@angular/common'
+import { RouterLink } from '@angular/router'
 
 @Component({
   selector: 'app-reports',
-  imports: [MatTableModule, MatCardModule, MatIcon, MatIconButton, DatePipe],
+  imports: [
+    MatTableModule,
+    MatCardModule,
+    MatIcon,
+    MatIconButton,
+    DatePipe,
+    MatButton,
+    RouterLink,
+  ],
   templateUrl: './reports.component.html',
   styleUrl: './reports.component.scss',
 })

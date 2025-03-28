@@ -17,6 +17,20 @@ table {
     border-collapse: collapse;
 }
 
+.zero-reports{
+    width: 60%;
+    padding: 20px;
+    margin: 20px auto;
+    text-align: center;
+    span{
+        margin: 10px 0;
+    }
+    button{
+        width: 70%;
+        margin: 10px auto;
+    }
+}
+
 @media screen and (max-width: 600px) {
     th,
     td {

@@ -3,4 +3,5 @@ export interface ReportPayload {
   weight: number
   bloodSugar: number
   bloodPressure: string
+  createdAt: Date
 }

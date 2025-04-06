@@ -3,10 +3,10 @@
     <mat-card-title>Health Reports</mat-card-title>
     <mat-card-content>
     <div class="table-container">
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
         <ng-container matColumnDef="createdAt">
-            <th mat-header-cell *matHeaderCellDef> Created at </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Created at </th>
             <td mat-cell *matCellDef="let report">
               @if(report.createdAt){
                   <span> {{ report.createdAt| date }}</span>
@@ -15,7 +15,7 @@
           </ng-container>
 
         <ng-container matColumnDef="pulse">
-          <th mat-header-cell *matHeaderCellDef> Pulse </th>
+          <th mat-sort-header mat-header-cell *matHeaderCellDef> Pulse </th>
           <td mat-cell *matCellDef="let report">
             @if(report.pulse){
                 <span> {{ report.pulse }} BPM</span>
@@ -24,7 +24,7 @@
         </ng-container>
   
         <ng-container matColumnDef="weight">
-          <th mat-header-cell *matHeaderCellDef> Weight </th>
+          <th mat-sort-header mat-header-cell *matHeaderCellDef> Weight </th>
           <td mat-cell *matCellDef="let report">
             @if(report.weight){
                 <span> {{ report.weight }} kg</span>
@@ -33,7 +33,7 @@
         </ng-container>
   
         <ng-container matColumnDef="bloodSugar">
-          <th mat-header-cell *matHeaderCellDef> Blood Sugar </th>
+          <th mat-sort-header mat-header-cell *matHeaderCellDef> Blood Sugar </th>
           <td mat-cell *matCellDef="let report">
             @if(report.bloodSugar){
                 <span> {{ report.bloodSugar }} mmol/L</span>
@@ -42,7 +42,7 @@
         </ng-container>
   
         <ng-container matColumnDef="bloodPressure">
-          <th mat-header-cell *matHeaderCellDef> Blood Pressure </th>
+          <th mat-sort-header mat-header-cell *matHeaderCellDef> Blood Pressure </th>
           <td mat-cell *matCellDef="let report">
             @if(report.bloodPressure){
                 <span> {{ report.bloodPressure }}</span>

@@ -1,4 +1,10 @@
-import { Component, inject } from '@angular/core'
+import {
+  AfterViewChecked,
+  Component,
+  inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core'
 import { ReportService } from '../../services/report/report.service'
 import { ReportPayload } from '../../services/report/report.payload'
 import { MatTableDataSource, MatTableModule } from '@angular/material/table'
@@ -10,6 +16,7 @@ import { MatDialog } from '@angular/material/dialog'
 import { DeleteReportConfirmationDialogComponent } from '../../dialogs/delete-report-confirmation-dialog/delete-report-confirmation-dialog.component'
 import { DatePipe } from '@angular/common'
 import { RouterLink } from '@angular/router'
+import { MatSort, MatSortModule } from '@angular/material/sort'
 
 @Component({
   selector: 'app-reports',
@@ -21,11 +28,12 @@ import { RouterLink } from '@angular/router'
     DatePipe,
     MatButton,
     RouterLink,
+    MatSortModule,
   ],
   templateUrl: './reports.component.html',
   styleUrl: './reports.component.scss',
 })
-export class ReportsComponent {
+export class ReportsComponent implements OnInit, AfterViewChecked {
   private reportService = inject(ReportService)
   displayedColumns: string[] = [
     'createdAt',
@@ -38,10 +46,32 @@ export class ReportsComponent {
   dataSource = new MatTableDataSource<ReportPayload>([])
   readonly dialog = inject(MatDialog)
 
+  @ViewChild(MatSort) sort!: MatSort
+
   ngOnInit() {
     this.reportService.getReports().subscribe((reports) => {
       this.dataSource.data = reports
+      this.dataSource.sort = this.sort
+      this.dataSource.sortingDataAccessor = (item, property) => {
+        switch (property) {
+          case 'createdAt':
+            return new Date(item.createdAt).getTime()
+          case 'pulse':
+          case 'weight':
+          case 'bloodSugar':
+            return Number(item[property]) || 0
+          case 'bloodPressure':
+            const [systolic] = item.bloodPressure?.split('/') || []
+            return Number(systolic) || 0
+          default:
+            return (<any>item)[property]
+        }
+      }
     })
+  }
+
+  ngAfterViewChecked() {
+    this.dataSource.sort = this.sort
   }
 
   deleteReport(reportId: string) {

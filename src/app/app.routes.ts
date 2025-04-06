@@ -51,6 +51,14 @@ export const routes: Routes = [
     canActivate: [profileGuard],
   },
   {
+    path: 'doctors',
+    loadComponent: () =>
+      import('./../components/doctors/doctors.component').then(
+        (c) => c.DoctorsComponent,
+      ),
+    canActivate: [profileGuard],
+  },
+  {
     path: '**',
     loadComponent: () =>
       import('./../components/landing/landing.component').then(

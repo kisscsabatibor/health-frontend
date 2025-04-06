@@ -1,0 +1,21 @@
+.doctors-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+  
+  .doctor-card {
+    background-color: #ffe5ec;
+    color: #880e4f;
+  }
+  
+  .loading-container,
+  .error-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+  }
+  

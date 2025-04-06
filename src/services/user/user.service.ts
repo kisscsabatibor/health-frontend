@@ -38,6 +38,10 @@ export class UserService {
     return this.http.delete(BACKEND_URL + '/api/user/profile')
   }
 
+  public getDoctors() {
+    return this.http.get<User[]>(BACKEND_URL + '/api/user/doctors')
+  }
+
   public logOut() {
     this.isLoggedIn = false
     this.authService.logOut()

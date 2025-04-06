@@ -7,6 +7,7 @@
     @if(userService.isLoggedIn){
       <button mat-menu-item routerLink="create-report">Create a report</button>
       <button mat-menu-item routerLink="reports">My reports</button>
+      <button mat-menu-item routerLink="doctors">Doctors</button>
       <button mat-menu-item routerLink="profile">Profile</button>
       <button mat-menu-item (click)="logOut()">Log out</button>
     } @else{

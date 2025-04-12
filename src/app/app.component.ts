@@ -6,6 +6,7 @@ import { MatMenuModule } from '@angular/material/menu'
 import { MatToolbar } from '@angular/material/toolbar'
 import { Router, RouterLink, RouterOutlet } from '@angular/router'
 import { UserService } from '../services/user/user.service'
+import { AuthService } from '../services/auth/auth.service'
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,9 @@ import { UserService } from '../services/user/user.service'
 })
 export class AppComponent {
   protected userService = inject(UserService)
+  protected authService = inject(AuthService)
   private router = inject(Router)
+
   title = 'Health'
 
   protected logOut() {

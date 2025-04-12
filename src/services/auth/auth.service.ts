@@ -25,7 +25,10 @@ export class AuthService {
     return this.http
       .post<LoginResponsePayload>(BACKEND_URL + '/api/auth/login', loginPayload)
       .pipe(
-        tap((token) => localStorage.setItem('token', token.token as string)),
+        tap((response) => {
+          localStorage.setItem('token', response.token as string)
+          localStorage.setItem('role', response.role as string)
+        }),
         catchError((err) => of(err)),
       )
   }
@@ -38,7 +41,12 @@ export class AuthService {
     return localStorage.getItem('token') || ''
   }
 
+  public isDoctor() {
+    return localStorage.getItem('role') === 'doctor'
+  }
+
   public logOut() {
+    localStorage.removeItem('role')
     localStorage.removeItem('token')
   }
 }

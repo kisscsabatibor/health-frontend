@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router'
 import { profileGuard } from '../guards/profile/profile.guard'
 import { authGuard } from '../guards/auth/auth.guard'
+import { patientGuard } from '../guards/patient/patient.guard'
 
 export const routes: Routes = [
   {
@@ -40,7 +41,7 @@ export const routes: Routes = [
       import('./../components/create-report/create-report.component').then(
         (c) => c.CreateReportComponent,
       ),
-    canActivate: [profileGuard],
+    canActivate: [profileGuard, patientGuard],
   },
   {
     path: 'reports',
@@ -48,7 +49,7 @@ export const routes: Routes = [
       import('./../components/reports/reports.component').then(
         (c) => c.ReportsComponent,
       ),
-    canActivate: [profileGuard],
+    canActivate: [profileGuard, patientGuard],
   },
   {
     path: 'doctors',
@@ -56,7 +57,7 @@ export const routes: Routes = [
       import('./../components/doctors/doctors.component').then(
         (c) => c.DoctorsComponent,
       ),
-    canActivate: [profileGuard],
+    canActivate: [profileGuard, patientGuard],
   },
   {
     path: '**',

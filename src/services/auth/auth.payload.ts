@@ -13,4 +13,5 @@ export interface LoginPayload {
 
 export interface LoginResponsePayload {
   token: string
+  role: string
 }

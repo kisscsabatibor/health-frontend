@@ -77,6 +77,14 @@ export const routes: Routes = [
     canActivate: [profileGuard, doctorGuard],
   },
   {
+    path: 'incomingRequests',
+    loadComponent: () =>
+      import(
+        './../components/incoming-requests//incoming-requests.component'
+      ).then((c) => c.IncomingRequestsComponent),
+    canActivate: [profileGuard, patientGuard],
+  },
+  {
     path: '**',
     loadComponent: () =>
       import('./../components/landing/landing.component').then(

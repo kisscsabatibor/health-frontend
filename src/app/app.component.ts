@@ -7,6 +7,9 @@ import { MatToolbar } from '@angular/material/toolbar'
 import { Router, RouterLink, RouterOutlet } from '@angular/router'
 import { UserService } from '../services/user/user.service'
 import { AuthService } from '../services/auth/auth.service'
+import { RequestService } from '../services/request/request.service'
+import { map } from 'rxjs'
+import { AsyncPipe } from '@angular/common'
 
 @Component({
   selector: 'app-root',
@@ -18,6 +21,7 @@ import { AuthService } from '../services/auth/auth.service'
     MatIconButton,
     MatMenuModule,
     RouterLink,
+    AsyncPipe,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -26,11 +30,22 @@ export class AppComponent {
   protected userService = inject(UserService)
   protected authService = inject(AuthService)
   private router = inject(Router)
+  private requestService = inject(RequestService)
+
+  protected incomingRequests$ = this.requestService
+    .getAllRequests()
+    .pipe(map((requests) => requests.length))
 
   title = 'Health'
 
   protected logOut() {
     this.userService.logOut()
     this.router.navigateByUrl('')
+  }
+
+  protected fetchRequests() {
+    this.incomingRequests$ = this.requestService
+      .getAllRequests()
+      .pipe(map((requests) => requests.length))
   }
 }

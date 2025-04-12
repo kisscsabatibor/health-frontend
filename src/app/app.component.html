@@ -1,6 +1,6 @@
 <mat-toolbar>
   <span routerLink="">Health</span>
-  <button mat-icon-button [matMenuTriggerFor]="menu">
+  <button mat-icon-button [matMenuTriggerFor]="menu" (click)="fetchRequests()">
     <mat-icon>menu</mat-icon>
   </button>
   <mat-menu #menu="matMenu" >
@@ -9,6 +9,9 @@
         <button mat-menu-item routerLink="create-report">Create a report</button>
         <button mat-menu-item routerLink="reports">My reports</button>
         <button mat-menu-item routerLink="doctors">Doctors</button>
+        @if(incomingRequests$ | async){
+          <button mat-menu-item routerLink="incomingRequests"><span>Requests ({{incomingRequests$ | async}})</span></button>
+        }
       }
       @else{
         <button mat-menu-item routerLink="dashboard">Patients</button>

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { inject, Injectable } from '@angular/core'
 import { BACKEND_URL } from '../auth/auth.payload'
-import { Request } from './request'
+import { RequestPayload } from './request'
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +16,9 @@ export class RequestService {
   }
 
   public getAllRequests() {
-    return this.http.get<Request[]>(BACKEND_URL + '/api/request/getRequests')
+    return this.http.get<RequestPayload[]>(
+      BACKEND_URL + '/api/request/getRequests',
+    )
   }
 
   public deleteRequest(requestId: string) {

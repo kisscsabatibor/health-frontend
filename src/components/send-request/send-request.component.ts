@@ -8,7 +8,7 @@ import { combineLatest, map } from 'rxjs'
 import { RequestService } from '../../services/request/request.service'
 import { MatCardModule } from '@angular/material/card'
 import { DatePipe } from '@angular/common'
-import { Request } from '../../services/request/request'
+import { RequestPayload } from '../../services/request/request'
 import { MatButtonModule } from '@angular/material/button'
 import { MatIcon } from '@angular/material/icon'
 
@@ -31,7 +31,7 @@ export class SendRequestComponent implements OnInit {
   private requestService = inject(RequestService)
   protected notAssignedPatients: User[] = []
   selectedPatientId: string | null = null
-  protected requests: Request[] = []
+  protected requests: RequestPayload[] = []
 
   ngOnInit() {
     this.fetchData()
@@ -76,7 +76,7 @@ export class SendRequestComponent implements OnInit {
     }
   }
 
-  removeRequest(request: Request) {
+  removeRequest(request: RequestPayload) {
     this.requestService.deleteRequest(request._id).subscribe((response) => {
       console.log(response)
       this.fetchData()

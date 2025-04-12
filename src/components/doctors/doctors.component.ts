@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core'
+import { Component, inject, OnInit } from '@angular/core'
 import { User } from '../../services/user/user'
 import { UserService } from '../../services/user/user.service'
 import { MatCardModule } from '@angular/material/card'
@@ -11,7 +11,7 @@ import { MatButtonModule } from '@angular/material/button'
   templateUrl: './doctors.component.html',
   styleUrl: './doctors.component.scss',
 })
-export class DoctorsComponent {
+export class DoctorsComponent implements OnInit {
   doctors: User[] = []
   assignedDoctors: User[] = []
   private userService = inject(UserService)

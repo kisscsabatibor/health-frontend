@@ -8,7 +8,7 @@
                 </mat-card-header>
                 <mat-card-content>
                   <p><strong>Doctor name: </strong>{{request.doctor.name}}</p>
-                  <button mat-icon-button color="primary" (click)="acceptRequest(request.doctor._id, request._id)">
+                  <button mat-icon-button color="primary" (click)="acceptRequest(request.doctor._id)">
                     <mat-icon>check</mat-icon>
                   </button>
                   <button mat-icon-button color="primary" (click)="removeRequest(request)">

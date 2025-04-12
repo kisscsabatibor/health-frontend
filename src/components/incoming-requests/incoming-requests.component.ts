@@ -1,8 +1,6 @@
 import { Component, inject } from '@angular/core'
-import { combineLatest, map, switchMap } from 'rxjs'
 import { RequestService } from '../../services/request/request.service'
 import { RequestPayload } from '../../services/request/request'
-import { UserService } from '../../services/user/user.service'
 import { MatCardModule } from '@angular/material/card'
 import { MatIcon } from '@angular/material/icon'
 import { DatePipe } from '@angular/common'
@@ -30,13 +28,10 @@ export class IncomingRequestsComponent {
       .subscribe((requests) => (this.requests = requests))
   }
 
-  acceptRequest(doctorId: string, requestId: string) {
-    this.assignmentService
-      .createAssignment(doctorId)
-      .pipe(switchMap(() => this.requestService.deleteRequest(requestId)))
-      .subscribe(() => {
-        this.fetchData()
-      })
+  acceptRequest(doctorId: string) {
+    this.assignmentService.createAssignment(doctorId).subscribe(() => {
+      this.fetchData()
+    })
   }
 
   removeRequest(request: RequestPayload) {

@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core'
 import { BACKEND_URL } from '../auth/auth.payload'
 import { User } from '../user/user'
 import { catchError, of } from 'rxjs'
+import { ReportPayload } from '../report/report.payload'
 
 @Injectable({
   providedIn: 'root',
@@ -27,6 +28,18 @@ export class AssignmentService {
   public getAssignedDoctors() {
     return this.http.get<User[]>(
       BACKEND_URL + '/api/assignment/assignedDoctors',
+    )
+  }
+
+  public getAssignedPatients() {
+    return this.http.get<User[]>(
+      BACKEND_URL + '/api/assignment/assignedPatients',
+    )
+  }
+
+  public getPatientReports(patientId: string) {
+    return this.http.get<ReportPayload[]>(
+      BACKEND_URL + `/api/assignment/patientReports/${patientId}`,
     )
   }
 }

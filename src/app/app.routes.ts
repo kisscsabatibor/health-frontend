@@ -2,6 +2,7 @@ import { Routes } from '@angular/router'
 import { profileGuard } from '../guards/profile/profile.guard'
 import { authGuard } from '../guards/auth/auth.guard'
 import { patientGuard } from '../guards/patient/patient.guard'
+import { doctorGuard } from '../guards/doctor/doctor.guard'
 
 export const routes: Routes = [
   {
@@ -58,6 +59,14 @@ export const routes: Routes = [
         (c) => c.DoctorsComponent,
       ),
     canActivate: [profileGuard, patientGuard],
+  },
+  {
+    path: 'dashboard',
+    loadComponent: () =>
+      import('./../components/dashboard/dashboard.component').then(
+        (c) => c.DashboardComponent,
+      ),
+    canActivate: [profileGuard, doctorGuard],
   },
   {
     path: '**',

@@ -10,6 +10,9 @@
         <button mat-menu-item routerLink="reports">My reports</button>
         <button mat-menu-item routerLink="doctors">Doctors</button>
       }
+      @else{
+        <button mat-menu-item routerLink="dashboard">Patients</button>
+      }
       <button mat-menu-item routerLink="profile">Profile</button>
       <button mat-menu-item (click)="logOut()">Log out</button>
     } @else{

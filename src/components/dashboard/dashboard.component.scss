@@ -1,0 +1,22 @@
+.selector-container{
+    text-align: center;
+    margin: 1em;
+}
+
+.reports-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    margin: 1em;
+  }
+  
+  .report-card {
+    border-left: 5px solid #c2185b;
+  }
+  
+  .no-reports-msg {
+    font-style: italic;
+    color: #888;
+    margin-top: 2rem;
+    text-align: center;
+  }

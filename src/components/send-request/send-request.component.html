@@ -1,0 +1,41 @@
+<div class="selector-container">
+    <mat-form-field appearance="fill" color="accent">
+        <mat-label>Select Patient</mat-label>
+        <mat-select [disabled]="!notAssignedPatients.length" [(value)]="selectedPatientId">
+            @for(patient of notAssignedPatients; track patient._id){
+                <mat-option [value]="patient._id">
+                    {{ patient.name }}
+                </mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+    <button [disabled]="!notAssignedPatients.length" mat-flat-button (click)="sendRequest()">Send request</button>
+</div>
+
+@if(requests.length){
+    <h2>Pending requests</h2>
+}
+
+@if(requests.length){
+    <div class="requests-container">
+        @for(request of requests; track request.assignedAt){
+            <mat-card class="request-card">
+                <mat-card-header>
+                  <mat-card-title>Request - {{ request.assignedAt | date }}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <p><strong>Patient name: </strong>{{request.patient.name}}</p>
+                  <button mat-icon-button color="primary" (click)="removeRequest(request)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </mat-card-content>
+              </mat-card>
+        }
+      </div>
+}
+
+@if(requests.length === 0){
+    <div class="no-reports-msg">
+        <p>You have no pending outgoing requests.</p>
+    </div>
+}

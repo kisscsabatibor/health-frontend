@@ -69,6 +69,14 @@ export const routes: Routes = [
     canActivate: [profileGuard, doctorGuard],
   },
   {
+    path: 'sendRequest',
+    loadComponent: () =>
+      import('./../components/send-request/send-request.component').then(
+        (c) => c.SendRequestComponent,
+      ),
+    canActivate: [profileGuard, doctorGuard],
+  },
+  {
     path: '**',
     loadComponent: () =>
       import('./../components/landing/landing.component').then(

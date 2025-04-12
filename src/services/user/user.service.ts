@@ -42,6 +42,10 @@ export class UserService {
     return this.http.get<User[]>(BACKEND_URL + '/api/user/doctors')
   }
 
+  public getPatients() {
+    return this.http.get<User[]>(BACKEND_URL + '/api/user/patients')
+  }
+
   public logOut() {
     this.isLoggedIn = false
     this.authService.logOut()

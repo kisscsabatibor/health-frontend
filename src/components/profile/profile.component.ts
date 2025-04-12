@@ -36,6 +36,7 @@ export class ProfileComponent {
   readonly dialog = inject(MatDialog)
 
   profileForm = new FormGroup({
+    _id: new FormControl(''),
     name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     birthDay: new FormControl(''),
@@ -47,6 +48,7 @@ export class ProfileComponent {
   constructor() {
     this.userService.getProfile().subscribe((profile: User) => {
       const userData: User = {
+        _id: profile._id,
         email: profile.email,
         name: profile.name,
         birthDay: profile.birthDay,

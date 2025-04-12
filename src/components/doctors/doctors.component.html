@@ -1,3 +1,14 @@
+@if(messageState === 'success'){
+  <div class="success-container">
+    <span>Changes saved successfully!</span>
+  </div>
+}
+
+@if(messageState === 'error'){
+  <div class="error-container">
+    <span>Something went wrong, please try again later!</span>
+  </div>
+}
 <div class="doctors-container">
     @for( doctor of doctors; track doctor.email){
         <mat-card class="doctor-card mat-elevation-z3">
@@ -8,6 +19,16 @@
             <mat-card-content>
               <p><strong>City:</strong> {{ doctor.city || 'N/A' }}</p>
               <p><strong>Phone:</strong> {{ doctor.phoneNumber || 'N/A' }}</p>
+              @if(!this.isAssigned(doctor)){
+                <button mat-flat-button color="primary" (click)="createAssignment(doctor)">
+                  Assign doctor
+                </button>
+              }
+              @else{
+                <button mat-raised-button color="primary" (click)="deleteAssignment(doctor)">
+                  Revoke access
+                </button>
+              }
             </mat-card-content>
           </mat-card>
     } 

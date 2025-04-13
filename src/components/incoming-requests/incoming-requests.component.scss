@@ -19,3 +19,9 @@
   h2{
     margin-left: 1em;
   }
+
+  .dark-theme{
+    :host{
+      color: white
+    }
+  }

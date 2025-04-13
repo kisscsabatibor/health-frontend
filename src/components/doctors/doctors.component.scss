@@ -35,4 +35,13 @@
     text-align: center;
     padding: 2em;
   }
+
+  .dark-theme{
+    :host{
+      mat-card{
+        color: white;
+        background-color: black;
+      }
+    }
+  }
   

@@ -1,8 +1,11 @@
 <mat-toolbar>
   <span routerLink="">Health</span>
-  <button mat-icon-button [matMenuTriggerFor]="menu" (click)="fetchRequests()">
-    <mat-icon>menu</mat-icon>
-  </button>
+  <div>
+    <app-theme-toggle></app-theme-toggle>
+    <button mat-icon-button [matMenuTriggerFor]="menu" (click)="fetchRequests()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
   <mat-menu #menu="matMenu" >
     @if(userService.isLoggedIn){
       @if(!authService.isDoctor()){

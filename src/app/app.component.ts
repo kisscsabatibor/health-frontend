@@ -10,6 +10,7 @@ import { AuthService } from '../services/auth/auth.service'
 import { RequestService } from '../services/request/request.service'
 import { map } from 'rxjs'
 import { AsyncPipe } from '@angular/common'
+import { ThemeToggleComponent } from '../components/theme-toggle/theme-toggle.component'
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,7 @@ import { AsyncPipe } from '@angular/common'
     MatMenuModule,
     RouterLink,
     AsyncPipe,
+    ThemeToggleComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

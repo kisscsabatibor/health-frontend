@@ -46,3 +46,14 @@ table {
       transform: scale(0.9); 
     }
   }
+
+  .dark-theme{
+    :host{
+      mat-card-title{
+            color: white
+        }
+        .report-list-card{
+          background-color: rgb(23, 18, 19);
+        }
+    }
+}

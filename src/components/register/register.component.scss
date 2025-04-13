@@ -12,3 +12,11 @@ form{
     display: flex;
     flex-direction: column;
 }
+
+.dark-theme{
+    :host{
+        h2,mat-label{
+            color: white
+        }
+    }
+}

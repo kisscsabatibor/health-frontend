@@ -15,3 +15,11 @@ form{
 mat-error{
     margin-bottom: 5px;
 }
+
+.dark-theme{
+    :host{
+        h2{
+            color: white
+        }
+    }
+}

@@ -3,3 +3,12 @@ mat-toolbar{
     justify-content: space-between;
     background-color: var(--mat-sys-surface-container-low);
 }
+
+.dark-theme{
+    :host{
+        mat-toolbar{
+            background-color: black;
+        }
+    }
+
+}

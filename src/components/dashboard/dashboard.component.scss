@@ -20,3 +20,11 @@
     margin-top: 2rem;
     text-align: center;
   }
+
+  .dark-theme{
+    :host{
+      mat-card{
+        color: white
+      }
+    }
+  }

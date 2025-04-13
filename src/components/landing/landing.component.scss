@@ -39,3 +39,18 @@
   .cta {
     margin-top: 2rem;
   }
+
+  .dark-theme{
+    :host{
+      h1,h2,p,li{
+        color: white
+      }
+      .hero{
+        background: linear-gradient( 135deg, #473038, #25141a);
+      }
+      mat-card{
+        background-color: black;
+        color: white;
+      }
+    }
+  }

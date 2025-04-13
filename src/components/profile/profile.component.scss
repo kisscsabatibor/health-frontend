@@ -18,4 +18,12 @@
     flex-direction: row;
     justify-content: space-between;
   }
+
+  .dark-theme{
+    :host{
+      mat-card-title{
+            color: white
+        }
+    }
+}
   

@@ -4,10 +4,11 @@ import { UserService } from '../../services/user/user.service'
 import { MatCardModule } from '@angular/material/card'
 import { AssignmentService } from '../../services/assignment/assignment.service'
 import { MatButtonModule } from '@angular/material/button'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'app-doctors',
-  imports: [MatCardModule, MatButtonModule],
+  imports: [TranslatePipe, MatCardModule, MatButtonModule],
   templateUrl: './doctors.component.html',
   styleUrl: './doctors.component.scss',
 })

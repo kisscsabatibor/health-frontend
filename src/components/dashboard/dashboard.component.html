@@ -1,38 +1,37 @@
 <div class="selector-container">
     <mat-form-field appearance="fill" color="accent">
-        <mat-label>Select Patient</mat-label>
-        <mat-select [(value)]="selectedPatientId" (selectionChange)="updateTableData()">
-            @for(patient of patients; track patient._id){
-                <mat-option [value]="patient._id">
-                    {{ patient.name }}
-                </mat-option>
-            }
-        </mat-select>
-    </mat-form-field>
-</div>
-
-@if(reports.length){
-    <div class="reports-container">
-        @for(report of reports; track report.createdAt){
-            <mat-card class="report-card">
-                <mat-card-header>
-                  <mat-card-title>Report - {{ report.createdAt | date }}</mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-                  <p><strong>Pulse:</strong> {{ report.pulse }} bpm</p>
-                  <p><strong>Weight:</strong> {{ report.weight }} kg</p>
-                  <p><strong>Blood Sugar:</strong> {{ report.bloodSugar }} mg/dL</p>
-                  <p><strong>Blood Pressure:</strong> {{ report.bloodPressure }}</p>
-                </mat-card-content>
-              </mat-card>
+      <mat-label>{{ "SELECT_PATIENT" | translate }}</mat-label>
+      <mat-select [(value)]="selectedPatientId" (selectionChange)="updateTableData()">
+        @for(patient of patients; track patient._id){
+          <mat-option [value]="patient._id">
+            {{ patient.name }}
+          </mat-option>
         }
-      </div>
-}
-
-@if(reports.length === 0 && selectedPatientId){
-    <div class="no-reports-msg">
-        <p>No reports found for this patient.</p>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  
+  @if(reports.length){
+    <div class="reports-container">
+      @for(report of reports; track report.createdAt){
+        <mat-card class="report-card">
+          <mat-card-header>
+            <mat-card-title>{{ "REPORT" | translate }} - {{ report.createdAt | date:'mediumDate':'':lang }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p><strong>{{ "PULSE_RATE" | translate }}:</strong> {{ report.pulse }} bpm</p>
+            <p><strong>{{ "WEIGHT" | translate }}:</strong> {{ report.weight }} kg</p>
+            <p><strong>{{ "BLOOD_SUGAR" | translate }}:</strong> {{ report.bloodSugar }} mg/dL</p>
+            <p><strong>{{ "BLOOD_PRESSURE" | translate }}:</strong> {{ report.bloodPressure }}</p>
+          </mat-card-content>
+        </mat-card>
+      }
     </div>
   }
-
+  
+  @if(reports.length === 0 && selectedPatientId){
+    <div class="no-reports-msg">
+      <p>{{ "NO_REPORTS_FOUND" | translate }}</p>
+    </div>
+  }
   

@@ -23,6 +23,7 @@ import { UserService } from '../../services/user/user.service'
 import { RegistrationPayload } from '../../services/auth/auth.payload'
 import { MatDialog } from '@angular/material/dialog'
 import { RegistrationSuccessDialogComponent } from '../../dialogs/registration-success-dialog/registration-success-dialog.component'
+import { TranslatePipe, TranslateService } from '@ngx-translate/core'
 
 @Component({
   selector: 'app-register',
@@ -36,6 +37,7 @@ import { RegistrationSuccessDialogComponent } from '../../dialogs/registration-s
     MatCheckbox,
     MatRadioModule,
     ReactiveFormsModule,
+    TranslatePipe,
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
@@ -45,6 +47,7 @@ export class RegisterComponent implements OnInit {
   private activatedRoute = inject(ActivatedRoute)
   private formBuilder = inject(FormBuilder)
   private userService = inject(UserService)
+  private translateService = inject(TranslateService)
   private router = inject(Router)
   readonly dialog = inject(MatDialog)
 
@@ -79,11 +82,11 @@ export class RegisterComponent implements OnInit {
         const errorMessage: string = response?.error?.error
         if (errorMessage?.startsWith('E11000')) {
           this.formError.set(
-            'This e-mail address is already in use. Please try another one.',
+            this.translateService.instant('REGISTER.ERRORS.EMAIL_EXISTS'),
           )
         } else if (errorMessage) {
           this.formError.set(
-            'Error during registration. Please try again later',
+            this.translateService.instant('REGISTER.ERRORS.UNKNOWN'),
           )
         } else {
           this.openDialog()
@@ -126,9 +129,13 @@ export class RegisterComponent implements OnInit {
   updateBirthDayErrorMessage() {
     const birthDayFormControl = this.registerForm.controls['birthDay']
     if (birthDayFormControl.hasError('required')) {
-      this.birthDayErrorMessage.set('Birth date is required.')
+      this.birthDayErrorMessage.set(
+        this.translateService.instant('REGISTER.ERRORS.BIRTHDAY_REQUIRED'),
+      )
     } else if (birthDayFormControl.hasError('futureDate')) {
-      this.birthDayErrorMessage.set('Birth date cannot be in the future.')
+      this.birthDayErrorMessage.set(
+        this.translateService.instant('REGISTER.ERRORS.BIRTHDAY_FUTURE'),
+      )
     } else {
       this.birthDayErrorMessage.set('')
     }
@@ -137,9 +144,13 @@ export class RegisterComponent implements OnInit {
   updateEmailErrorMessage() {
     const emailFormControl = this.registerForm.controls['email']
     if (emailFormControl.hasError('required')) {
-      this.emailErrorMessage.set('You must enter a value.')
+      this.emailErrorMessage.set(
+        this.translateService.instant('REGISTER.ERRORS.EMAIL_REQUIRED'),
+      )
     } else if (emailFormControl.hasError('email')) {
-      this.emailErrorMessage.set('You must enter a valid email.')
+      this.emailErrorMessage.set(
+        this.translateService.instant('REGISTER.ERRORS.EMAIL_INVALID'),
+      )
     } else {
       this.emailErrorMessage.set('')
     }
@@ -148,7 +159,9 @@ export class RegisterComponent implements OnInit {
   updateNameErrorMessage() {
     const nameFormControl = this.registerForm.controls['name']
     if (nameFormControl.hasError('required')) {
-      this.nameErrorMessage.set('You must enter a value.')
+      this.nameErrorMessage.set(
+        this.translateService.instant('REGISTER.ERRORS.NAME_REQUIRED'),
+      )
     } else {
       this.nameErrorMessage.set('')
     }

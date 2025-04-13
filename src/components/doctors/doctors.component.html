@@ -1,35 +1,36 @@
 @if(messageState === 'success'){
   <div class="success-container">
-    <span>Changes saved successfully!</span>
+    <span>{{ "CHANGES_SAVED_SUCCESS" | translate }}</span>
   </div>
 }
 
 @if(messageState === 'error'){
   <div class="error-container">
-    <span>Something went wrong, please try again later!</span>
+    <span>{{ "CHANGES_SAVE_ERROR" | translate }}</span>
   </div>
 }
+
 <div class="doctors-container">
-    @for( doctor of doctors; track doctor.email){
-        <mat-card class="doctor-card mat-elevation-z3">
-            <mat-card-header>
-              <mat-card-title>{{ doctor.name }}</mat-card-title>
-              <mat-card-subtitle>{{ doctor.email }}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-              <p><strong>City:</strong> {{ doctor.city || 'N/A' }}</p>
-              <p><strong>Phone:</strong> {{ doctor.phoneNumber || 'N/A' }}</p>
-              @if(!this.isAssigned(doctor)){
-                <button mat-flat-button color="primary" (click)="createAssignment(doctor)">
-                  Assign doctor
-                </button>
-              }
-              @else{
-                <button mat-raised-button color="primary" (click)="deleteAssignment(doctor)">
-                  Revoke access
-                </button>
-              }
-            </mat-card-content>
-          </mat-card>
-    } 
-  </div>
+  @for(doctor of doctors; track doctor.email){
+    <mat-card class="doctor-card mat-elevation-z3">
+      <mat-card-header>
+        <mat-card-title>{{ doctor.name }}</mat-card-title>
+        <mat-card-subtitle>{{ doctor.email }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p><strong>{{ "CITY" | translate }}:</strong> {{ doctor.city || ('NOT_AVAILABLE' | translate) }}</p>
+        <p><strong>{{ "PHONE" | translate }}:</strong> {{ doctor.phoneNumber || ('NOT_AVAILABLE' | translate) }}</p>
+        @if(!this.isAssigned(doctor)){
+          <button mat-flat-button color="primary" (click)="createAssignment(doctor)">
+            {{ "ASSIGN_DOCTOR" | translate }}
+          </button>
+        }
+        @else{
+          <button mat-raised-button color="primary" (click)="deleteAssignment(doctor)">
+            {{ "REVOKE_ACCESS" | translate }}
+          </button>
+        }
+      </mat-card-content>
+    </mat-card>
+  }
+</div>

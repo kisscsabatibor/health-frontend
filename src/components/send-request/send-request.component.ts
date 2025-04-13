@@ -11,10 +11,12 @@ import { DatePipe } from '@angular/common'
 import { RequestPayload } from '../../services/request/request'
 import { MatButtonModule } from '@angular/material/button'
 import { MatIcon } from '@angular/material/icon'
+import { TranslatePipe, TranslateService } from '@ngx-translate/core'
 
 @Component({
   selector: 'app-send-request',
   imports: [
+    TranslatePipe,
     MatFormFieldModule,
     MatSelectModule,
     MatCardModule,
@@ -32,9 +34,14 @@ export class SendRequestComponent implements OnInit {
   protected notAssignedPatients: User[] = []
   selectedPatientId: string | null = null
   protected requests: RequestPayload[] = []
+  private translateService = inject(TranslateService)
+  protected lang = this.translateService.currentLang
 
   ngOnInit() {
     this.fetchData()
+    this.translateService.onLangChange
+      .asObservable()
+      .subscribe((event) => (this.lang = event.lang))
   }
 
   fetchData() {
@@ -70,7 +77,6 @@ export class SendRequestComponent implements OnInit {
       this.requestService
         .createRequest(this.selectedPatientId)
         .subscribe((value) => {
-          console.log(value)
           this.fetchData()
         })
     }
@@ -78,7 +84,6 @@ export class SendRequestComponent implements OnInit {
 
   removeRequest(request: RequestPayload) {
     this.requestService.deleteRequest(request._id).subscribe((response) => {
-      console.log(response)
       this.fetchData()
     })
   }

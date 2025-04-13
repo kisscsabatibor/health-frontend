@@ -1,52 +1,82 @@
 <mat-card>
-    <h2>Registration</h2>
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <h2>{{ "REGISTER.TITLE" | translate }}</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <mat-radio-group formControlName="role" aria-label="Select an option">
-        <mat-label>I am a...</mat-label>
-        <mat-radio-button value="patient">Patient</mat-radio-button>
-        <mat-radio-button value="doctor">Doctor</mat-radio-button>
-      </mat-radio-group> 
+      <mat-label>{{ "REGISTER.ROLE_LABEL" | translate }}</mat-label>
+      <mat-radio-button value="patient">{{ "PROFILE.ROLE_PATIENT" | translate }}</mat-radio-button>
+      <mat-radio-button value="doctor">{{ "PROFILE.ROLE_DOCTOR" | translate }}</mat-radio-button>
+    </mat-radio-group>
+
     <mat-form-field appearance="fill">
-        <mat-label>E-mail</mat-label>
-        <input (blur)="updateEmailErrorMessage()" matInput formControlName="email" type="email" placeholder="example@example.org">
-        @if (!registerForm.controls['email'].valid) {
-          <mat-error><mat-icon>error</mat-icon>{{emailErrorMessage()}}</mat-error>
-        }
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Full name</mat-label>
-        <input (blur)="updateNameErrorMessage()" matInput formControlName="name" type="text" placeholder="e.g. John Smith">
-        @if (!registerForm.controls['name'].valid) {
-          <mat-error><mat-icon>error</mat-icon>{{nameErrorMessage()}}</mat-error>
-        }
-      </mat-form-field>
-      <mat-form-field  appearance="fill">
-        <mat-label>Password</mat-label>
-        <input formControlName="password" matInput type="password">
-      </mat-form-field>
-      <mat-form-field  appearance="fill">
-        <mat-label>Password again</mat-label>
-        <input formControlName="passwordAgain" matInput type="password">
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Date of birth</mat-label>
-        <input (dateChange)="updateBirthDayErrorMessage()" formControlName="birthDay" matInput [matDatepicker]="picker">
-        <mat-datepicker-toggle matIconSuffix [for]="picker">
-          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-        </mat-datepicker-toggle>
-        <mat-datepicker #picker ></mat-datepicker>
-      </mat-form-field>
-      @if (registerForm.controls['birthDay'].dirty && !registerForm.controls['birthDay'].valid) {
-        <mat-error><mat-icon>error</mat-icon>{{birthDayErrorMessage()}}</mat-error>
+      <mat-label>{{ "PROFILE.EMAIL" | translate }}</mat-label>
+      <input
+        (blur)="updateEmailErrorMessage()"
+        matInput
+        formControlName="email"
+        type="email"
+        placeholder="{{ 'LOGIN.EMAIL_PLACEHOLDER' | translate }}"
+      />
+      @if (!registerForm.controls['email'].valid) {
+        <mat-error><mat-icon>error</mat-icon>{{ emailErrorMessage() }}</mat-error>
       }
-           
-      <mat-checkbox formControlName="accept">I have read and accept the Terms and Conditions*</mat-checkbox>
-      @if (registerForm.controls['accept'].dirty && !registerForm.controls['accept'].value) {
-        <mat-error><mat-icon>error</mat-icon>You have to accept the Terms and Conditions to continue.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>{{ "REGISTER.FULL_NAME" | translate }}</mat-label>
+      <input
+        (blur)="updateNameErrorMessage()"
+        matInput
+        formControlName="name"
+        type="text"
+        placeholder="{{ 'REGISTER.FULL_NAME_PLACEHOLDER' | translate }}"
+      />
+      @if (!registerForm.controls['name'].valid) {
+        <mat-error><mat-icon>error</mat-icon>{{ nameErrorMessage() }}</mat-error>
       }
-      @if (formError()) {
-        <mat-error><mat-icon>error</mat-icon>{{formError()}}</mat-error>
-      }
-      <button [disabled]="!registerForm.valid" type="submit" mat-flat-button>Register</button>
-      </form>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>{{ "LOGIN.PASSWORD_LABEL" | translate }}</mat-label>
+      <input formControlName="password" matInput type="password" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>{{ "REGISTER.PASSWORD_AGAIN" | translate }}</mat-label>
+      <input formControlName="passwordAgain" matInput type="password" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>{{ "PROFILE.BIRTHDAY" | translate }}</mat-label>
+      <input
+        (dateChange)="updateBirthDayErrorMessage()"
+        formControlName="birthDay"
+        matInput
+        [matDatepicker]="picker"
+      />
+      <mat-datepicker-toggle matIconSuffix [for]="picker">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    @if (registerForm.controls['birthDay'].dirty && !registerForm.controls['birthDay'].valid) {
+      <mat-error><mat-icon>error</mat-icon>{{ birthDayErrorMessage() }}</mat-error>
+    }
+
+    <mat-checkbox formControlName="accept">
+      {{ "REGISTER.ACCEPT_TERMS" | translate }}
+    </mat-checkbox>
+    @if (registerForm.controls['accept'].dirty && !registerForm.controls['accept'].value) {
+      <mat-error>
+        <mat-icon>error</mat-icon>{{ "REGISTER.ACCEPT_TERMS_ERROR" | translate }}
+      </mat-error>
+    }
+
+    @if (formError()) {
+      <mat-error><mat-icon>error</mat-icon>{{ formError() }}</mat-error>
+    }
+
+    <button [disabled]="!registerForm.valid" type="submit" mat-flat-button>
+      {{ "REGISTER.BUTTON" | translate }}
+    </button>
+  </form>
 </mat-card>

@@ -1,8 +1,17 @@
-import { Routes } from '@angular/router'
+import { ResolveFn, Routes } from '@angular/router'
 import { profileGuard } from '../guards/profile/profile.guard'
 import { authGuard } from '../guards/auth/auth.guard'
 import { patientGuard } from '../guards/patient/patient.guard'
 import { doctorGuard } from '../guards/doctor/doctor.guard'
+import { inject } from '@angular/core'
+import { TranslateService } from '@ngx-translate/core'
+
+function titleResolver(titleKey: string): ResolveFn<string> {
+  return () => {
+    const translate = inject(TranslateService)
+    return translate.get(titleKey).toPromise()
+  }
+}
 
 export const routes: Routes = [
   {
@@ -11,7 +20,7 @@ export const routes: Routes = [
       import('./../components/landing/landing.component').then(
         (c) => c.LandingComponent,
       ),
-    title: 'Health | Home',
+    title: titleResolver('ROUTES.HOME'),
   },
   {
     path: 'register',
@@ -20,7 +29,7 @@ export const routes: Routes = [
         (c) => c.RegisterComponent,
       ),
     canActivate: [authGuard],
-    title: 'Health | Registration',
+    title: titleResolver('ROUTES.REGISTER'),
   },
   {
     path: 'login',
@@ -29,7 +38,7 @@ export const routes: Routes = [
         (c) => c.LoginComponent,
       ),
     canActivate: [authGuard],
-    title: 'Health | Login',
+    title: titleResolver('ROUTES.LOGIN'),
   },
   {
     path: 'profile',
@@ -38,7 +47,7 @@ export const routes: Routes = [
         (c) => c.ProfileComponent,
       ),
     canActivate: [profileGuard],
-    title: 'Health | Profile',
+    title: titleResolver('ROUTES.PROFILE'),
   },
   {
     path: 'create-report',
@@ -47,7 +56,7 @@ export const routes: Routes = [
         (c) => c.CreateReportComponent,
       ),
     canActivate: [profileGuard, patientGuard],
-    title: 'Health | Create report',
+    title: titleResolver('ROUTES.CREATE_REPORT'),
   },
   {
     path: 'reports',
@@ -56,7 +65,7 @@ export const routes: Routes = [
         (c) => c.ReportsComponent,
       ),
     canActivate: [profileGuard, patientGuard],
-    title: 'Health | Reports',
+    title: titleResolver('ROUTES.REPORTS'),
   },
   {
     path: 'doctors',
@@ -65,7 +74,7 @@ export const routes: Routes = [
         (c) => c.DoctorsComponent,
       ),
     canActivate: [profileGuard, patientGuard],
-    title: 'Health | Doctors',
+    title: titleResolver('ROUTES.DOCTORS'),
   },
   {
     path: 'dashboard',
@@ -74,7 +83,7 @@ export const routes: Routes = [
         (c) => c.DashboardComponent,
       ),
     canActivate: [profileGuard, doctorGuard],
-    title: 'Health | Patient dashboard',
+    title: titleResolver('ROUTES.DASHBOARD'),
   },
   {
     path: 'sendRequest',
@@ -83,7 +92,7 @@ export const routes: Routes = [
         (c) => c.SendRequestComponent,
       ),
     canActivate: [profileGuard, doctorGuard],
-    title: 'Health | Requests',
+    title: titleResolver('ROUTES.SEND_REQUEST'),
   },
   {
     path: 'incomingRequests',
@@ -92,7 +101,7 @@ export const routes: Routes = [
         './../components/incoming-requests//incoming-requests.component'
       ).then((c) => c.IncomingRequestsComponent),
     canActivate: [profileGuard, patientGuard],
-    title: 'Health | Requests',
+    title: titleResolver('ROUTES.INCOMING_REQUESTS'),
   },
   {
     path: '**',

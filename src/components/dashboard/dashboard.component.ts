@@ -6,20 +6,32 @@ import { MatSelectModule } from '@angular/material/select'
 import { ReportPayload } from '../../services/report/report.payload'
 import { MatCardModule } from '@angular/material/card'
 import { DatePipe } from '@angular/common'
+import { TranslatePipe, TranslateService } from '@ngx-translate/core'
 
 @Component({
   selector: 'app-dashboard',
-  imports: [MatFormFieldModule, MatSelectModule, MatCardModule, DatePipe],
+  imports: [
+    MatFormFieldModule,
+    MatSelectModule,
+    MatCardModule,
+    DatePipe,
+    TranslatePipe,
+  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent implements OnInit {
   private assignmentService = inject(AssignmentService)
+  private translateService = inject(TranslateService)
+  protected lang = this.translateService.currentLang
   protected patients: User[] = []
   selectedPatientId: string | null = null
   protected reports: ReportPayload[] = []
 
   ngOnInit() {
+    this.translateService.onLangChange
+      .asObservable()
+      .subscribe((event) => (this.lang = event.lang))
     this.fetchData()
   }
 
@@ -35,8 +47,6 @@ export class DashboardComponent implements OnInit {
         .getPatientReports(this.selectedPatientId)
         .subscribe((data) => {
           this.reports = data
-          console.log(this.reports)
-          console.log(this.selectedPatientId)
         })
     }
   }

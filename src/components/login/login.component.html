@@ -1,24 +1,45 @@
 <mat-card>
-    <h2>Login</h2>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <h2>{{ "LOGIN.TITLE" | translate }}</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="fill">
-        <mat-label>E-mail</mat-label>
-        <input formControlName="email" matInput type="email" placeholder="example@example.org" (blur)="updateEmailErrorMessage()">
-        @if (!loginForm.controls['email'].valid) {
-          <mat-error><mat-icon>error</mat-icon>{{emailErrorMessage()}}</mat-error>
-        }
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Password</mat-label>
-        <input formControlName="password" matInput type="password" (blur)="updatePasswordErrorMessage()">
-        @if (!loginForm.controls['password'].valid) {
-          <mat-error><mat-icon>error</mat-icon>{{passwordErrorMessage()}}</mat-error>
-        }
-      </mat-form-field>
-      @if (formError()) {
-        <mat-error><mat-icon>error</mat-icon>{{formError()}}</mat-error>
+      <mat-label>{{ "LOGIN.EMAIL_LABEL" | translate }}</mat-label>
+      <input
+        formControlName="email"
+        matInput
+        type="email"
+        placeholder="{{ 'LOGIN.EMAIL_PLACEHOLDER' | translate }}"
+        (blur)="updateEmailErrorMessage()"
+      />
+      @if (!loginForm.controls['email'].valid) {
+        <mat-error>
+          <mat-icon>error</mat-icon>{{ emailErrorMessage() }}
+        </mat-error>
       }
-      <button type="submit" [disabled]="!loginForm.valid" mat-flat-button>Login</button>
-    </form>
-    </mat-card>
+    </mat-form-field>
 
+    <mat-form-field appearance="fill">
+      <mat-label>{{ "LOGIN.PASSWORD_LABEL" | translate }}</mat-label>
+      <input
+        formControlName="password"
+        matInput
+        type="password"
+        (blur)="updatePasswordErrorMessage()"
+      />
+      @if (!loginForm.controls['password'].valid) {
+        <mat-error>
+          <mat-icon>error</mat-icon>{{ passwordErrorMessage() }}
+        </mat-error>
+      }
+    </mat-form-field>
+
+    @if (formError()) {
+      <mat-error>
+        <mat-icon>error</mat-icon>{{ formError() }}
+      </mat-error>
+    }
+
+    <button type="submit" [disabled]="!loginForm.valid" mat-flat-button>
+      {{ "LOGIN.BUTTON" | translate }}
+    </button>
+  </form>
+</mat-card>

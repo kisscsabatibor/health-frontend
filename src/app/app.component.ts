@@ -11,6 +11,8 @@ import { RequestService } from '../services/request/request.service'
 import { map } from 'rxjs'
 import { AsyncPipe } from '@angular/common'
 import { ThemeToggleComponent } from '../components/theme-toggle/theme-toggle.component'
+import { TranslatePipe, TranslateService } from '@ngx-translate/core'
+import { LanguageSelectorComponent } from '../components/language-selector/language-selector.component'
 
 @Component({
   selector: 'app-root',
@@ -24,6 +26,8 @@ import { ThemeToggleComponent } from '../components/theme-toggle/theme-toggle.co
     RouterLink,
     AsyncPipe,
     ThemeToggleComponent,
+    TranslatePipe,
+    LanguageSelectorComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -33,6 +37,14 @@ export class AppComponent {
   protected authService = inject(AuthService)
   private router = inject(Router)
   private requestService = inject(RequestService)
+  private translateService = inject(TranslateService)
+  langs = ['en', 'de', 'hu']
+
+  constructor() {
+    this.translateService.addLangs(this.langs)
+    this.translateService.setDefaultLang(this.langs[0])
+    this.translateService.use(this.langs[0])
+  }
 
   protected incomingRequests$ = this.requestService
     .getAllRequests()

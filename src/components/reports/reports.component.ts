@@ -17,10 +17,12 @@ import { DeleteReportConfirmationDialogComponent } from '../../dialogs/delete-re
 import { DatePipe } from '@angular/common'
 import { RouterLink } from '@angular/router'
 import { MatSort, MatSortModule } from '@angular/material/sort'
+import { TranslatePipe, TranslateService } from '@ngx-translate/core'
 
 @Component({
   selector: 'app-reports',
   imports: [
+    TranslatePipe,
     MatTableModule,
     MatCardModule,
     MatIcon,
@@ -45,10 +47,15 @@ export class ReportsComponent implements OnInit, AfterViewChecked {
   ]
   dataSource = new MatTableDataSource<ReportPayload>([])
   readonly dialog = inject(MatDialog)
+  private translateService = inject(TranslateService)
+  protected lang = this.translateService.currentLang
 
   @ViewChild(MatSort) sort!: MatSort
 
   ngOnInit() {
+    this.translateService.onLangChange
+      .asObservable()
+      .subscribe((event) => (this.lang = event.lang))
     this.reportService.getReports().subscribe((reports) => {
       this.dataSource.data = reports
       this.dataSource.sort = this.sort

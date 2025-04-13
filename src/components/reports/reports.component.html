@@ -1,75 +1,75 @@
 @if(this.dataSource.data.length > 0){
-<mat-card class="report-list-card">
-    <mat-card-title>Health Reports</mat-card-title>
-    <mat-card-content>
-    <div class="table-container">
-      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-
-        <ng-container matColumnDef="createdAt">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Created at </th>
+  <mat-card class="report-list-card">
+      <mat-card-title>{{ "HEALTH_REPORTS.TITLE" | translate }}</mat-card-title>
+      <mat-card-content>
+      <div class="table-container">
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  
+          <ng-container matColumnDef="createdAt">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ "HEALTH_REPORTS.CREATED_AT" | translate }} </th>
+              <td mat-cell *matCellDef="let report">
+                @if(report.createdAt){
+                    <span> {{ report.createdAt | date:'mediumDate':'':lang }}</span>
+                } 
+              </td>
+            </ng-container>
+  
+          <ng-container matColumnDef="pulse">
+            <th mat-sort-header mat-header-cell *matHeaderCellDef> {{ "HEALTH_REPORTS.PULSE" | translate }} </th>
             <td mat-cell *matCellDef="let report">
-              @if(report.createdAt){
-                  <span> {{ report.createdAt| date }}</span>
+              @if(report.pulse){
+                  <span> {{ report.pulse }} {{ "HEALTH_REPORTS.BPM" | translate }}</span>
               } 
             </td>
           </ng-container>
-
-        <ng-container matColumnDef="pulse">
-          <th mat-sort-header mat-header-cell *matHeaderCellDef> Pulse </th>
-          <td mat-cell *matCellDef="let report">
-            @if(report.pulse){
-                <span> {{ report.pulse }} BPM</span>
-            } 
-          </td>
-        </ng-container>
-  
-        <ng-container matColumnDef="weight">
-          <th mat-sort-header mat-header-cell *matHeaderCellDef> Weight </th>
-          <td mat-cell *matCellDef="let report">
-            @if(report.weight){
-                <span> {{ report.weight }} kg</span>
-            } 
-          </td>
-        </ng-container>
-  
-        <ng-container matColumnDef="bloodSugar">
-          <th mat-sort-header mat-header-cell *matHeaderCellDef> Blood Sugar </th>
-          <td mat-cell *matCellDef="let report">
-            @if(report.bloodSugar){
-                <span> {{ report.bloodSugar }} mmol/L</span>
-            } 
-          </td>
-        </ng-container>
-  
-        <ng-container matColumnDef="bloodPressure">
-          <th mat-sort-header mat-header-cell *matHeaderCellDef> Blood Pressure </th>
-          <td mat-cell *matCellDef="let report">
-            @if(report.bloodPressure){
-                <span> {{ report.bloodPressure }}</span>
-            } 
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef> Actions </th>
+    
+          <ng-container matColumnDef="weight">
+            <th mat-sort-header mat-header-cell *matHeaderCellDef> {{ "HEALTH_REPORTS.WEIGHT" | translate }} </th>
             <td mat-cell *matCellDef="let report">
-              <button mat-icon-button color="warn" (click)="deleteReport(report._id)">
-                <mat-icon>delete</mat-icon>
-              </button>
+              @if(report.weight){
+                  <span> {{ report.weight }} kg</span>
+              } 
+            </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="bloodSugar">
+            <th mat-sort-header mat-header-cell *matHeaderCellDef> {{ "HEALTH_REPORTS.BLOOD_SUGAR" | translate }} </th>
+            <td mat-cell *matCellDef="let report">
+              @if(report.bloodSugar){
+                  <span> {{ report.bloodSugar }} mmol/L</span>
+              } 
+            </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="bloodPressure">
+            <th mat-sort-header mat-header-cell *matHeaderCellDef> {{ "HEALTH_REPORTS.BLOOD_PRESSURE" | translate }} </th>
+            <td mat-cell *matCellDef="let report">
+              @if(report.bloodPressure){
+                  <span> {{ report.bloodPressure }}</span>
+              } 
             </td>
           </ng-container>
   
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-    </div>
-    </mat-card-content>
-  </mat-card>
-}
-@else{
-    <mat-card class="zero-reports">
-        <span>Looks like you have 0 reports. All created reports will appear here in the future</span>
-        <button routerLink="/create-report" mat-raised-button> Create a report</button>
+          <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef> {{ "HEALTH_REPORTS.ACTIONS" | translate }} </th>
+              <td mat-cell *matCellDef="let report">
+                <button mat-icon-button color="warn" (click)="deleteReport(report._id)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+    
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+      </mat-card-content>
     </mat-card>
-}
+  }
+  @else{
+      <mat-card class="zero-reports">
+          <span>{{ "HEALTH_REPORTS.NO_REPORTS" | translate }}</span>
+          <button routerLink="/create-report" mat-raised-button> {{ "HEALTH_REPORTS.CREATE_REPORT" | translate }}</button>
+      </mat-card>
+  }
   

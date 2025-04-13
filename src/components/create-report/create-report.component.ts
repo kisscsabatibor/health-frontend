@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInput } from '@angular/material/input'
 import { ReportService } from '../../services/report/report.service'
 import { Router } from '@angular/router'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'app-create-report',
@@ -20,6 +21,7 @@ import { Router } from '@angular/router'
     MatFormFieldModule,
     MatInput,
     MatButton,
+    TranslatePipe,
   ],
   templateUrl: './create-report.component.html',
   styleUrl: './create-report.component.scss',

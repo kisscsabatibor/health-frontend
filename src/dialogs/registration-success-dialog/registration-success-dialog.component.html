@@ -1,7 +1,7 @@
-<h2 mat-dialog-title>Registration Successful</h2>
-    <mat-dialog-content>
-      <p>Your registration was successful! You can now proceed to the login page.</p>
-    </mat-dialog-content>
-    <mat-dialog-actions align="end">
-      <button mat-button mat-dialog-close>Go to Login</button>
-    </mat-dialog-actions>
+<h2 mat-dialog-title>{{ "DIALOGS.REGISTRATION_SUCCESS_TITLE" | translate }}</h2>
+<mat-dialog-content>
+  <p>{{ "DIALOGS.REGISTRATION_SUCCESS_TEXT" | translate }}</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>{{ "DIALOGS.GO_TO_LOGIN" | translate }}</button>
+</mat-dialog-actions>

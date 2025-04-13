@@ -1,0 +1,7 @@
+<mat-select [panelWidth]="null" [(value)]="selectedLang" (selectionChange)="changeLanguage($event.value)">
+    @for(lang of languages; track $index){
+        <mat-option [value]="lang">
+            {{ lang.toUpperCase() }}
+          </mat-option>
+    }
+</mat-select>

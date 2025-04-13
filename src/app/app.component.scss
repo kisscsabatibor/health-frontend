@@ -4,6 +4,11 @@ mat-toolbar{
     background-color: var(--mat-sys-surface-container-low);
 }
 
+.menu-container{
+    display: flex;
+
+}
+
 .dark-theme{
     :host{
         mat-toolbar{

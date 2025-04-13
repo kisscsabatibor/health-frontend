@@ -1,49 +1,49 @@
 <div class="landing-container mat-app-background">
   <section class="hero">
     <div class="hero-content">
-      <h1>Your Health, Your Data – Secure & Accessible</h1>
-      <p>Empowering patients and doctors to store, manage, and share medical records securely.</p>
+      <h1>{{ "LANDING.HERO_TITLE" | translate }}</h1>
+      <p>{{ "LANDING.HERO_DESCRIPTION" | translate }}</p>
       <div class="cta-buttons">
-        <button mat-raised-button (click)="openPatientRegistration()">Sign Up as Patient</button>
-        <button mat-raised-button (click)="openDoctorRegistration()">Join as Doctor</button>
+        <button mat-raised-button (click)="openPatientRegistration()">{{ "LANDING.SIGNUP_PATIENT" | translate }}</button>
+        <button mat-raised-button (click)="openDoctorRegistration()">{{ "LANDING.SIGNUP_DOCTOR" | translate }}</button>
       </div>
     </div>
   </section>
 
   <section class="features">
-    <h2>Why Choose Health?</h2>
+    <h2>{{ "LANDING.FEATURES_TITLE" | translate }}</h2>
     <div class="features-grid">
-      <mat-card class="feature-item">Secure Medical Data Storage</mat-card>
-      <mat-card class="feature-item">Easy Data Sharing</mat-card>
-      <mat-card class="feature-item">Appointment & Health Tracking</mat-card>
-      <mat-card class="feature-item">AI-Powered Insights</mat-card>
-      <mat-card class="feature-item">Cross-Platform Accessibility</mat-card>
+      <mat-card class="feature-item">{{ "LANDING.FEATURE_SECURE_STORAGE" | translate }}</mat-card>
+      <mat-card class="feature-item">{{ "LANDING.FEATURE_EASY_SHARING" | translate }}</mat-card>
+      <mat-card class="feature-item">{{ "LANDING.FEATURE_TRACKING" | translate }}</mat-card>
+      <mat-card class="feature-item">{{ "LANDING.FEATURE_AI_INSIGHTS" | translate }}</mat-card>
+      <mat-card class="feature-item">{{ "LANDING.FEATURE_ACCESSIBILITY" | translate }}</mat-card>
     </div>
   </section>
 
   <section class="how-it-works">
-    <h2>How It Works</h2>
+    <h2>{{ "LANDING.HOW_IT_WORKS_TITLE" | translate }}</h2>
     <ol>
-      <li>Sign up as a patient or doctor</li>
-      <li>Upload and organize medical records</li>
-      <li>Share securely with verified professionals</li>
-      <li>Get AI-driven insights for better health</li>
+      <li>{{ "LANDING.HOW_STEP_1" | translate }}</li>
+      <li>{{ "LANDING.HOW_STEP_2" | translate }}</li>
+      <li>{{ "LANDING.HOW_STEP_3" | translate }}</li>
+      <li>{{ "LANDING.HOW_STEP_4" | translate }}</li>
     </ol>
   </section>
 
   <section class="testimonials">
-    <h2>What Users Say</h2>
-    <mat-card>"Health has made managing my medical records effortless!" – Jane Doe</mat-card>
-    <mat-card>"As a doctor, I can now access patient records securely and quickly." – Dr. Smith</mat-card>
+    <h2>{{ "LANDING.TESTIMONIALS_TITLE" | translate }}</h2>
+    <mat-card>{{ "LANDING.TESTIMONIAL_1" | translate }}</mat-card>
+    <mat-card>{{ "LANDING.TESTIMONIAL_2" | translate }}</mat-card>
   </section>
 
   <section class="security">
-    <h2>Security & Compliance</h2>
-    <p>We use top-tier encryption and comply with HIPAA/GDPR to keep your data safe.</p>
+    <h2>{{ "LANDING.SECURITY_TITLE" | translate }}</h2>
+    <p>{{ "LANDING.SECURITY_DESCRIPTION" | translate }}</p>
   </section>
 
   <section class="cta">
-    <h2>Get Started Today</h2>
-    <button mat-raised-button color="primary" routerLink="register">Sign Up Now</button>
+    <h2>{{ "LANDING.CTA_TITLE" | translate }}</h2>
+    <button mat-raised-button color="primary" routerLink="register">{{ "LANDING.CTA_BUTTON" | translate }}</button>
   </section>
 </div>

@@ -1,27 +1,27 @@
 @if(requests.length){
-    <h2>Pending requests</h2>
-    <div class="requests-container">
-        @for(request of requests; track request.assignedAt){
-            <mat-card class="request-card">
-                <mat-card-header>
-                  <mat-card-title>Request - {{ request.assignedAt | date }}</mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-                  <p><strong>Doctor name: </strong>{{request.doctor.name}}</p>
-                  <button mat-icon-button color="primary" (click)="acceptRequest(request.doctor._id)">
-                    <mat-icon>check</mat-icon>
-                  </button>
-                  <button mat-icon-button color="primary" (click)="removeRequest(request)">
-                    <mat-icon>delete</mat-icon>
-                  </button>
-                </mat-card-content>
-              </mat-card>
-        }
-      </div>
+  <h2>{{ "PENDING_REQUESTS" | translate }}</h2>
+  <div class="requests-container">
+    @for(request of requests; track request.assignedAt){
+      <mat-card class="request-card">
+        <mat-card-header>
+          <mat-card-title>{{ "REQUEST" | translate }} - {{ request.assignedAt | date:'mediumDate':'':lang }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p><strong>{{ "DOCTOR_NAME" | translate }}: </strong>{{ request.doctor.name }}</p>
+          <button mat-icon-button color="primary" (click)="acceptRequest(request.doctor._id)">
+            <mat-icon>check</mat-icon>
+          </button>
+          <button mat-icon-button color="primary" (click)="removeRequest(request)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card-content>
+      </mat-card>
+    }
+  </div>
 }
 
 @if(requests.length === 0){
-    <div class="no-reports-msg">
-        <p>You have no pending incoming requests.</p>
-    </div>
+  <div class="no-reports-msg">
+    <p>{{ "NO_PENDING_REQUESTS" | translate }}</p>
+  </div>
 }

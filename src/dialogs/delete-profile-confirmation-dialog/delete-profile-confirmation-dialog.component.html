@@ -1,8 +1,10 @@
-<h2 mat-dialog-title>Profile deletion</h2>
-    <mat-dialog-content>
-      <p>Are you sure you want to delete your account? This action cannot be undone.</p>
-    </mat-dialog-content>
-    <mat-dialog-actions align="end">
-      <button mat-button mat-dialog-close>Back</button>
-      <button class="delete-button" mat-flat-button (click)="deleteAccount()">Delete my account</button>
-    </mat-dialog-actions>
+<h2 mat-dialog-title>{{ "DELETE_DIALOG.TITLE" | translate }}</h2>
+<mat-dialog-content>
+  <p>{{ "DELETE_DIALOG.CONFIRMATION_TEXT" | translate }}</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>{{ "DELETE_DIALOG.BACK" | translate }}</button>
+  <button class="delete-button" mat-flat-button (click)="deleteAccount()">
+    {{ "DELETE_DIALOG.DELETE_BUTTON" | translate }}
+  </button>
+</mat-dialog-actions>

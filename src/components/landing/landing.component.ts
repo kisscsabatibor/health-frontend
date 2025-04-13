@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core'
 import { MatButton } from '@angular/material/button'
 import { MatCard } from '@angular/material/card'
 import { Router, RouterLink } from '@angular/router'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'app-landing',
-  imports: [MatCard, MatButton, RouterLink],
+  imports: [TranslatePipe, MatCard, MatButton, RouterLink],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss',
 })

@@ -16,6 +16,7 @@ import { DeleteProfileConfirmationDialogComponent } from '../../dialogs/delete-p
 import { filter, switchMap } from 'rxjs'
 import { Router } from '@angular/router'
 import { User } from '../../services/user/user'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'app-profile',
@@ -26,6 +27,7 @@ import { User } from '../../services/user/user'
     MatSelectModule,
     MatInput,
     MatButton,
+    TranslatePipe,
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
@@ -65,9 +67,7 @@ export class ProfileComponent {
   saveChanges() {
     this.userService
       .updateProfile(this.profileForm.value as User)
-      .subscribe((updatedProfile) => {
-        console.log(updatedProfile)
-      })
+      .subscribe((updatedProfile) => {})
   }
 
   deleteAccount() {

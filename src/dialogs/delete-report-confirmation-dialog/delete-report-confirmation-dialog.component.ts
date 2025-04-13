@@ -6,10 +6,11 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog'
 import { DeleteProfileConfirmationDialogComponent } from '../delete-profile-confirmation-dialog/delete-profile-confirmation-dialog.component'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'app-delete-report-confirmation-dialog',
-  imports: [MatDialogModule, MatDialogActions, MatButton],
+  imports: [TranslatePipe, MatDialogModule, MatDialogActions, MatButton],
   templateUrl: './delete-report-confirmation-dialog.component.html',
   styleUrl: './delete-report-confirmation-dialog.component.scss',
 })

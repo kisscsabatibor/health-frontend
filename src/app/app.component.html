@@ -1,6 +1,7 @@
 <mat-toolbar>
   <span routerLink="">Health</span>
-  <div>
+  <div class="menu-container">
+    <app-language-selector [languages]="langs"></app-language-selector>
     <app-theme-toggle></app-theme-toggle>
     <button mat-icon-button [matMenuTriggerFor]="menu" (click)="fetchRequests()">
       <mat-icon>menu</mat-icon>
@@ -9,22 +10,22 @@
   <mat-menu #menu="matMenu" >
     @if(userService.isLoggedIn){
       @if(!authService.isDoctor()){
-        <button mat-menu-item routerLink="create-report">Create a report</button>
-        <button mat-menu-item routerLink="reports">My reports</button>
-        <button mat-menu-item routerLink="doctors">Doctors</button>
+        <button mat-menu-item routerLink="create-report">{{"CREATE_REPORT"|translate}}</button>
+        <button mat-menu-item routerLink="reports">{{"MY_REPORTS"|translate}}</button>
+        <button mat-menu-item routerLink="doctors">{{"DOCTORS"|translate}}</button>
         @if(incomingRequests$ | async){
-          <button mat-menu-item routerLink="incomingRequests"><span>Requests ({{incomingRequests$ | async}})</span></button>
+          <button mat-menu-item routerLink="incomingRequests"><span>{{"REQUESTS"|translate}} ({{incomingRequests$ | async}})</span></button>
         }
       }
       @else{
-        <button mat-menu-item routerLink="dashboard">Patients</button>
-        <button mat-menu-item routerLink="sendRequest">Requests</button>
+        <button mat-menu-item routerLink="dashboard">{{"PATIENTS"|translate}}</button>
+        <button mat-menu-item routerLink="sendRequest">{{"REQUESTS"|translate}}</button>
       }
-      <button mat-menu-item routerLink="profile">Profile</button>
-      <button mat-menu-item (click)="logOut()">Log out</button>
+      <button mat-menu-item routerLink="profile">{{"PROFILE"|translate}}</button>
+      <button mat-menu-item (click)="logOut()">{{"LOG_OUT"|translate}}</button>
     } @else{
-      <button mat-menu-item routerLink="login">Login</button>
-      <button mat-menu-item routerLink="register">Registration</button>
+      <button mat-menu-item routerLink="login">{{"LOGIN"|translate}}</button>
+      <button mat-menu-item routerLink="register">{{"REGISTRATION"|translate}}</button>
     }
 
 

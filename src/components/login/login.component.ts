@@ -8,6 +8,7 @@ import { UserService } from '../../services/user/user.service'
 import { LoginPayload } from '../../services/auth/auth.payload'
 import { Router } from '@angular/router'
 import { MatIcon } from '@angular/material/icon'
+import { TranslatePipe, TranslateService } from '@ngx-translate/core'
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ import { MatIcon } from '@angular/material/icon'
     MatButton,
     ReactiveFormsModule,
     MatIcon,
+    TranslatePipe,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
@@ -26,6 +28,7 @@ import { MatIcon } from '@angular/material/icon'
 export class LoginComponent {
   private formBuilder = inject(FormBuilder)
   private userService = inject(UserService)
+  private translateService = inject(TranslateService)
   private router = inject(Router)
 
   loginForm = this.formBuilder.group({
@@ -45,18 +48,24 @@ export class LoginComponent {
           this.router.navigateByUrl('profile')
         }
         if (response.status === 401) {
-          this.formError.set('Wrong e-mail and/or password! Please try again.')
+          this.formError.set(this.translateService.instant('WRONG_EMAIL'))
         } else {
-          this.formError.set('Something went wrong please try again later.')
+          this.formError.set(
+            this.translateService.instant('CHANGES_SAVE_ERROR'),
+          )
         }
       })
   }
   updateEmailErrorMessage() {
     const emailFormControl = this.loginForm.controls['email']
     if (emailFormControl.hasError('required')) {
-      this.emailErrorMessage.set('You must enter a value')
+      this.emailErrorMessage.set(
+        this.translateService.instant('MANDATORY_VALUE'),
+      )
     } else if (emailFormControl.hasError('email')) {
-      this.emailErrorMessage.set('You must enter a valid email')
+      this.emailErrorMessage.set(
+        this.translateService.instant('MANDATORY_EMAIL'),
+      )
     } else {
       this.emailErrorMessage.set('')
     }
@@ -65,7 +74,9 @@ export class LoginComponent {
   updatePasswordErrorMessage() {
     const passwordFormControl = this.loginForm.controls['password']
     if (passwordFormControl.hasError('required')) {
-      this.passwordErrorMessage.set('You must enter a value')
+      this.passwordErrorMessage.set(
+        this.translateService.instant('MANDATORY_VALUE'),
+      )
     } else {
       this.passwordErrorMessage.set('')
     }

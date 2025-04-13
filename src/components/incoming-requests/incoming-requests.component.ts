@@ -6,20 +6,26 @@ import { MatIcon } from '@angular/material/icon'
 import { DatePipe } from '@angular/common'
 import { AssignmentService } from '../../services/assignment/assignment.service'
 import { MatIconButton } from '@angular/material/button'
+import { TranslatePipe, TranslateService } from '@ngx-translate/core'
 
 @Component({
   selector: 'app-incoming-requests',
-  imports: [MatCardModule, MatIcon, DatePipe, MatIconButton],
+  imports: [TranslatePipe, MatCardModule, MatIcon, DatePipe, MatIconButton],
   templateUrl: './incoming-requests.component.html',
   styleUrl: './incoming-requests.component.scss',
 })
 export class IncomingRequestsComponent {
   private requestService = inject(RequestService)
   private assignmentService = inject(AssignmentService)
+  private translateService = inject(TranslateService)
+  protected lang = this.translateService.currentLang
   protected requests: RequestPayload[] = []
 
   ngOnInit() {
     this.fetchData()
+    this.translateService.onLangChange
+      .asObservable()
+      .subscribe((event) => (this.lang = event.lang))
   }
 
   fetchData() {

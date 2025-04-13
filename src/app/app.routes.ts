@@ -11,6 +11,7 @@ export const routes: Routes = [
       import('./../components/landing/landing.component').then(
         (c) => c.LandingComponent,
       ),
+    title: 'Health | Home',
   },
   {
     path: 'register',
@@ -19,6 +20,7 @@ export const routes: Routes = [
         (c) => c.RegisterComponent,
       ),
     canActivate: [authGuard],
+    title: 'Health | Registration',
   },
   {
     path: 'login',
@@ -27,6 +29,7 @@ export const routes: Routes = [
         (c) => c.LoginComponent,
       ),
     canActivate: [authGuard],
+    title: 'Health | Login',
   },
   {
     path: 'profile',
@@ -35,6 +38,7 @@ export const routes: Routes = [
         (c) => c.ProfileComponent,
       ),
     canActivate: [profileGuard],
+    title: 'Health | Profile',
   },
   {
     path: 'create-report',
@@ -43,6 +47,7 @@ export const routes: Routes = [
         (c) => c.CreateReportComponent,
       ),
     canActivate: [profileGuard, patientGuard],
+    title: 'Health | Create report',
   },
   {
     path: 'reports',
@@ -51,6 +56,7 @@ export const routes: Routes = [
         (c) => c.ReportsComponent,
       ),
     canActivate: [profileGuard, patientGuard],
+    title: 'Health | Reports',
   },
   {
     path: 'doctors',
@@ -59,6 +65,7 @@ export const routes: Routes = [
         (c) => c.DoctorsComponent,
       ),
     canActivate: [profileGuard, patientGuard],
+    title: 'Health | Doctors',
   },
   {
     path: 'dashboard',
@@ -67,6 +74,7 @@ export const routes: Routes = [
         (c) => c.DashboardComponent,
       ),
     canActivate: [profileGuard, doctorGuard],
+    title: 'Health | Patient dashboard',
   },
   {
     path: 'sendRequest',
@@ -75,6 +83,7 @@ export const routes: Routes = [
         (c) => c.SendRequestComponent,
       ),
     canActivate: [profileGuard, doctorGuard],
+    title: 'Health | Requests',
   },
   {
     path: 'incomingRequests',
@@ -83,6 +92,7 @@ export const routes: Routes = [
         './../components/incoming-requests//incoming-requests.component'
       ).then((c) => c.IncomingRequestsComponent),
     canActivate: [profileGuard, patientGuard],
+    title: 'Health | Requests',
   },
   {
     path: '**',

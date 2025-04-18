@@ -7,6 +7,7 @@ import {
 } from '../auth/auth.payload'
 import { HttpClient } from '@angular/common/http'
 import { User } from './user'
+import { catchError, of } from 'rxjs'
 
 @Injectable({
   providedIn: 'root',
@@ -28,10 +29,9 @@ export class UserService {
   }
 
   public updateProfile(updateProfilePayload: User) {
-    return this.http.put(
-      BACKEND_URL + '/api/user/profile',
-      updateProfilePayload,
-    )
+    return this.http
+      .put(BACKEND_URL + '/api/user/profile', updateProfilePayload)
+      .pipe(catchError((err) => of(err)))
   }
 
   public deleteAccount() {

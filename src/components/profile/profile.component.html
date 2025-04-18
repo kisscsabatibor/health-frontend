@@ -1,3 +1,15 @@
+@if(messageState === 'success'){
+  <div class="success-container">
+    <span>{{ "CHANGES_SAVED_SUCCESS" | translate }}</span>
+  </div>
+}
+
+@if(messageState === 'error'){
+  <div class="error-container">
+    <span>{{ "CHANGES_SAVE_ERROR" | translate }}</span>
+  </div>
+}
+
 <mat-card class="profile-card">
   <mat-card-title>{{ "PROFILE.TITLE" | translate }}</mat-card-title>
   <mat-card-content>

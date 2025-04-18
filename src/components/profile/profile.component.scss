@@ -26,4 +26,20 @@
         }
     }
 }
+
+.success-container{
+  background-color: #d8fcd8;
+}
+
+.error-container{
+  background-color: #fcd8d8;
+}
+
+.success-container, .error-container{
+  border-radius: 1em;
+  width: 75%;
+  margin: 1em auto;
+  text-align: center;
+  padding: 2em;
+}
   

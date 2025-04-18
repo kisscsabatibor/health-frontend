@@ -36,6 +36,7 @@ export class ProfileComponent {
   private userService = inject(UserService)
   private router = inject(Router)
   readonly dialog = inject(MatDialog)
+  messageState: 'empty' | 'success' | 'error' = 'empty'
 
   profileForm = new FormGroup({
     _id: new FormControl(''),
@@ -67,7 +68,12 @@ export class ProfileComponent {
   saveChanges() {
     this.userService
       .updateProfile(this.profileForm.value as User)
-      .subscribe((updatedProfile) => {})
+      .subscribe((response) => {
+        const success = !response.error
+        success
+          ? (this.messageState = 'success')
+          : (this.messageState = 'error')
+      })
   }
 
   deleteAccount() {

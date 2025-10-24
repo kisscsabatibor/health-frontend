@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common'
-import { Component, inject, Input } from '@angular/core'
+
+import { Component, inject, Input, DOCUMENT } from '@angular/core'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatSelectModule } from '@angular/material/select'
 import { TranslateService } from '@ngx-translate/core'

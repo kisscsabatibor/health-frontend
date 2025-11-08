@@ -1,23 +1,33 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { LandingComponent } from './landing.component';
+import { LandingComponent } from './landing.component'
+import { TranslateModule } from '@ngx-translate/core'
+import { ActivatedRoute } from '@angular/router'
 
 describe('LandingComponent', () => {
-  let component: LandingComponent;
-  let fixture: ComponentFixture<LandingComponent>;
+  let component: LandingComponent
+  let fixture: ComponentFixture<LandingComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LandingComponent]
-    })
-    .compileComponents();
+      imports: [LandingComponent, TranslateModule.forRoot()],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: { params: {} },
+            queryParams: {},
+          },
+        },
+      ],
+    }).compileComponents()
 
-    fixture = TestBed.createComponent(LandingComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(LandingComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

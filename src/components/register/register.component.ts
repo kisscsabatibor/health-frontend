@@ -12,13 +12,11 @@ import { ActivatedRoute, Router } from '@angular/router'
 import {
   AbstractControl,
   FormBuilder,
-  FormGroup,
   ReactiveFormsModule,
   ValidationErrors,
   ValidatorFn,
   Validators,
 } from '@angular/forms'
-import { AuthService } from '../../services/auth/auth.service'
 import { UserService } from '../../services/user/user.service'
 import { RegistrationPayload } from '../../services/auth/auth.payload'
 import { MatDialog } from '@angular/material/dialog'

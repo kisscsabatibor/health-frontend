@@ -23,10 +23,10 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core'
 export class DashboardComponent implements OnInit {
   private assignmentService = inject(AssignmentService)
   private translateService = inject(TranslateService)
-  protected lang = this.translateService.currentLang
-  protected patients: User[] = []
+  public lang = this.translateService.currentLang
+  public patients: User[] = []
   selectedPatientId: string | null = null
-  protected reports: ReportPayload[] = []
+  public reports: ReportPayload[] = []
 
   ngOnInit() {
     this.translateService.onLangChange

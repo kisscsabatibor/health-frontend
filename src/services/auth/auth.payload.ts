@@ -1,6 +1,7 @@
 import { User } from '../user/user'
+import { environment } from '../../environments/environment'
 
-export const BACKEND_URL = 'https://health-backend-4wto.onrender.com'
+export const BACKEND_URL = environment.backendUrl
 
 export interface RegistrationPayload extends User {
   password: string

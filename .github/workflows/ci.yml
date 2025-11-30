@@ -31,15 +31,3 @@ jobs:
 
       - name: Run tests
         run: npm run test
-
-  deploy:
-    name: Deploy to Render
-    needs: ci
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Trigger Render Deploy
-        run: |
-          curl "$RENDER_DEPLOY_HOOK"
-        env:
-          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}

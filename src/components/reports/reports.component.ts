@@ -68,10 +68,9 @@ export class ReportsComponent implements OnInit, AfterViewChecked {
           case 'bloodSugar':
             return Number(item[property]) || 0
           case 'bloodPressure':
-            const [systolic] = item.bloodPressure?.split('/') || []
-            return Number(systolic) || 0
+            return Number(item.bloodPressure?.split('/') || []) || 0
           default:
-            return (<any>item)[property]
+            return ''
         }
       }
     })

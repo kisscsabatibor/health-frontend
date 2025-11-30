@@ -1,4 +1,3 @@
-
 import { Component, inject, Input, DOCUMENT } from '@angular/core'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatSelectModule } from '@angular/material/select'
@@ -12,10 +11,11 @@ import { TranslateService } from '@ngx-translate/core'
 })
 export class LanguageSelectorComponent {
   @Input() languages: string[] = []
-  selectedLang: string = ''
+  selectedLang = ''
   private document = inject(DOCUMENT)
+  private translate = inject(TranslateService)
 
-  constructor(private translate: TranslateService) {
+  constructor() {
     this.changeLanguage(localStorage.getItem('lang') || 'en')
   }
 

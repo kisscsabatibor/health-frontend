@@ -76,14 +76,14 @@ export class SendRequestComponent implements OnInit {
     if (this.selectedPatientId) {
       this.requestService
         .createRequest(this.selectedPatientId)
-        .subscribe((value) => {
+        .subscribe(() => {
           this.fetchData()
         })
     }
   }
 
   removeRequest(request: RequestPayload) {
-    this.requestService.deleteRequest(request._id).subscribe((response) => {
+    this.requestService.deleteRequest(request._id).subscribe(() => {
       this.fetchData()
     })
   }

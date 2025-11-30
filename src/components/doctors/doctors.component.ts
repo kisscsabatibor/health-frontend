@@ -41,9 +41,11 @@ export class DoctorsComponent implements OnInit {
       .createAssignment(doctor._id)
       .subscribe((response) => {
         const success = !response.error
-        success
-          ? (this.messageState = 'success')
-          : (this.messageState = 'error')
+        if (success) {
+          this.messageState = 'success'
+        } else {
+          this.messageState = 'error'
+        }
         this.fetchData()
       })
   }
@@ -53,9 +55,11 @@ export class DoctorsComponent implements OnInit {
       .deleteAssignment(doctor._id)
       .subscribe((response) => {
         const success = !response.error
-        success
-          ? (this.messageState = 'success')
-          : (this.messageState = 'error')
+        if (success) {
+          this.messageState = 'success'
+        } else {
+          this.messageState = 'error'
+        }
         this.fetchData()
       })
   }

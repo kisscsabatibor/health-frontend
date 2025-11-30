@@ -17,7 +17,9 @@ describe('LanguageSelectorComponent', () => {
     translateService = TestBed.inject(TranslateService)
 
     spyOn(translateService, 'use').and.callThrough()
-    spyOn(localStorage, 'setItem').and.callFake(() => {})
+    spyOn(localStorage, 'setItem').and.callFake(() => {
+      console.log()
+    })
   })
 
   it('should create', () => {

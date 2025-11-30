@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core'
+import { Component, inject, OnInit } from '@angular/core'
 import { RequestService } from '../../services/request/request.service'
 import { RequestPayload } from '../../services/request/request'
 import { MatCardModule } from '@angular/material/card'
@@ -14,7 +14,7 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core'
   templateUrl: './incoming-requests.component.html',
   styleUrl: './incoming-requests.component.scss',
 })
-export class IncomingRequestsComponent {
+export class IncomingRequestsComponent implements OnInit {
   private requestService = inject(RequestService)
   private assignmentService = inject(AssignmentService)
   private translateService = inject(TranslateService)

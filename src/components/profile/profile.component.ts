@@ -70,9 +70,11 @@ export class ProfileComponent {
       .updateProfile(this.profileForm.value as User)
       .subscribe((response) => {
         const success = !response.error
-        success
-          ? (this.messageState = 'success')
-          : (this.messageState = 'error')
+        if (success) {
+          this.messageState = 'success'
+        } else {
+          this.messageState = 'error'
+        }
       })
   }
 

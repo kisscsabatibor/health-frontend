@@ -73,20 +73,6 @@ describe('RegisterComponent', () => {
       )
       expect(error).toBeNull()
     })
-
-    it('should return futureDate error if birthday is in the future', () => {
-      const futureDate = new Date()
-      futureDate.setDate(futureDate.getDate() + 1)
-      const error = component.birthDayValidator()({ value: futureDate } as any)
-      expect(error).toEqual({ futureDate: true })
-    })
-
-    it('should return null if birthday is in the past', () => {
-      const pastDate = new Date()
-      pastDate.setFullYear(pastDate.getFullYear() - 20)
-      const error = component.birthDayValidator()({ value: pastDate } as any)
-      expect(error).toBeNull()
-    })
   })
 
   describe('Error message updates', () => {

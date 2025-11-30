@@ -30,8 +30,9 @@ export class CreateReportComponent {
   reportForm: FormGroup
   private reportService = inject(ReportService)
   private router = inject(Router)
+  private fb = inject(FormBuilder)
 
-  constructor(private fb: FormBuilder) {
+  constructor() {
     this.reportForm = this.fb.group({
       pulse: ['', [Validators.min(30), Validators.max(200)]],
       bloodPressure: [''],

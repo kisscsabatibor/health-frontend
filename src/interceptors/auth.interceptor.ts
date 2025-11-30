@@ -7,8 +7,13 @@ export function authInterceptor(
   next: HttpHandlerFn,
 ) {
   const authToken = inject(AuthService).getAuthToken()
+  const lang = localStorage.getItem('lang') || 'en'
+
   const newReq = req.clone({
-    headers: req.headers.append('Authorization', authToken),
+    headers: req.headers
+      .append('Authorization', authToken)
+      .set('Accept-Language', lang),
   })
+
   return next(newReq)
 }

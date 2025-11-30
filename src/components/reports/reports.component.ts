@@ -5,8 +5,8 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core'
-import { ReportService } from '../../services/report/report.service'
 import { ReportPayload } from '../../services/report/report.payload'
+import { ReportService } from '../../services/report/report.service'
 import { MatTableDataSource, MatTableModule } from '@angular/material/table'
 import { MatCardModule } from '@angular/material/card'
 import { MatIcon } from '@angular/material/icon'

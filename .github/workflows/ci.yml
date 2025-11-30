@@ -7,7 +7,7 @@ on:
 
 jobs:
   ci:
-    name: Run CI (Install, Lint, Build, Test)
+    name: Integration
     runs-on: ubuntu-latest
 
     steps:
@@ -31,3 +31,15 @@ jobs:
 
       - name: Run tests
         run: npm run test
+
+  deploy:
+    name: Deployment
+    needs: ci
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger Render Deploy
+        run: |
+          curl "$RENDER_DEPLOY_HOOK"
+        env:
+          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
